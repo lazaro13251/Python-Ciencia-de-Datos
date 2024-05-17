@@ -1,0 +1,586 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Debugging en Python &#8212; Curso de Centro de Excelencia en Inteligencia Artificial</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'extras';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo_hiperautomatizacion_1.png" class="logo__image only-light" alt="Curso de Centro de Excelencia en Inteligencia Artificial - Home"/>
+    <script>document.write(`<img src="_static/logo_hiperautomatizacion_1.png" class="logo__image only-dark" alt="Curso de Centro de Excelencia en Inteligencia Artificial - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Introducción a Python para Ciencia de Datos
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Sesión 1 - Configuración del entorno de desarrollo.</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_1/01_01-Instalacion_Notebooks_VSCode.html">1. Instalación de Python y del entorno de desarrollo.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_1/01_02-Estructuras_datos_Python.html">2. Estructura de datos en Python.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_1/01_03-Tipos_Datos_Python.html">3. Tipos de variables en Python.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_1/01_09-Evaluacion_S1.html">4. Evaluación sesión 1.</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sesión 2 - Introducción al lenguaje de Python.</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_2/02_01-Control_Flujo_Funciones.html">5. Control de flujo y funciones.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_2/02_03-Debugging_en_Python.html">6. Control de errores en Python.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_2/02_04-Manipulacion_OS.html">7. Manipulación del Sistema de Archivos con Python.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_2/02_05_Programacion_Orientada_Objetos.html">8. Programación orientada a objetos en Python.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_2/02_09-Comandos_Magicos.html">9. Comandos del sistema y comandos mágicos.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_2/02_10-Evaluacion_S2.html">10. Evaluación sesión 2.</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sesión 3- Introducción a Numpy.</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_3/03_01-Librerias_Requerimientos_Git.html">11. Librerías, archivo de requerimientos y Git.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_3/03_02-Intro_Numpy.html">12. Introducción a numpy.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_3/03_09-Evaluacion_S3.html">13. Evaluación sesión 3.</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sesión 4 - Introducción a Pandas y matplotlib.</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_4/04_01-Intro_Pandas.html">14. Introducción a Pandas.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_4/04_02-Intro_Matplotlib.html">15. Introducción a Matplotlib.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_4/04_09-Evaluacion_S4.html">16. Evaluación sesión 4.</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/extras.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Debugging en Python</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Debugging en Python</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pasos-para-realizar-el-debugging">Pasos para realizar el Debugging</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iniciar-el-debugging">Iniciar el Debugging</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#puntos-de-interrupcion-breakpoints">Puntos de interrupción (<em>Breakpoints</em>)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utilizando-el-depurador">Utilizando el depurador</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consejos-para-un-debugging-efectivo">Consejos para un Debugging efectivo</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="debugging-en-python">
+<h1>Debugging en Python<a class="headerlink" href="#debugging-en-python" title="Link to this heading">#</a></h1>
+<p><em><strong>Debuggear</strong></em>, en el contexto del desarrollo de software, es el proceso meticuloso de identificar, aislar y corregir errores o “bugs” en el código de un programa.</p>
+<p>Para aprender a debuggear en notebooks, en lugar de en un entorno de programación tradicional, este proceso adquiere una dimensión adicional.</p>
+<ul class="simple">
+<li><p>Los notebooks, como Jupyter, ofrecen un entorno interactivo que combina código, salida y documentación en un solo lugar, lo que facilita la experimentación y la exploración de datos de manera eficiente.</p></li>
+<li><p>Sin embargo, también presentan desafíos únicos para el debugging, dado que el código se ejecuta en celdas independientes que pueden afectarse entre sí de maneras no lineales.</p></li>
+<li><p>Aprender a debuggear en este contexto implica no solo identificar y corregir errores sintácticos o lógicos en el código, sino también entender cómo el estado del kernel y el orden de ejecución de las celdas influyen en el comportamiento del programa.</p></li>
+<li><p>Este conocimiento es esencial para <strong>desarrollar notebooks robustos y confiables</strong> que sirvan como herramientas efectivas para el análisis de datos.</p></li>
+</ul>
+<p>Para ejemplificar el proceso de debugging tomaremos la función definida en el <a class="reference internal" href="#./02_01-Control_Flujo_Funciones.ipynb"><span class="xref myst">notebook de control de flujo</span></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tricotomia</span><span class="p">(</span><span class="n">int_1</span><span class="p">,</span> <span class="n">int_2</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Esta función toma 2 argumentos y nos regresa si int_1 es igual, menor o mayor a int_2 </span>
+<span class="sd">    int_1: primer entero a ser comparado,</span>
+<span class="sd">    int_2: segundo entero a ser comparado,</span>
+<span class="sd">    Regresa: 0,-1,1</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="n">int_2</span> <span class="o">==</span> <span class="n">int_1</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;igual&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">elif</span> <span class="n">int_2</span> <span class="o">&lt;</span> <span class="n">int_1</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;menor&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;mayor&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;La variable tricotomia almacena el valor&#39;</span><span class="p">,</span> <span class="n">tricotomia</span><span class="p">,</span> <span class="s1">&#39;y pertenece a la clase&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">tricotomia</span><span class="p">))</span>
+
+<span class="n">int_1</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">int_2</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">resultado_funcion</span> <span class="o">=</span> <span class="n">tricotomia</span><span class="p">(</span><span class="n">int_1</span><span class="p">,</span> <span class="n">int_2</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;El resultado de llamar a la función es </span><span class="si">{</span><span class="n">resultado_funcion</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Reasignamos la variable resultado_función a un nuevo valor</span>
+<span class="n">resultado_funcion</span> <span class="o">=</span> <span class="n">tricotomia</span><span class="p">(</span><span class="n">int_1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;El resultado de llamar a la función con valor por defecto es </span><span class="si">{</span><span class="n">resultado_funcion</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>La variable tricotomia almacena el valor &lt;function tricotomia at 0x0000000007D525C0&gt; y pertenece a la clase &lt;class &#39;function&#39;&gt;
+mayor
+El resultado de llamar a la función es 1
+menor
+El resultado de llamar a la función con valor por defecto es -1
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="pasos-para-realizar-el-debugging">
+<h1>Pasos para realizar el Debugging<a class="headerlink" href="#pasos-para-realizar-el-debugging" title="Link to this heading">#</a></h1>
+<section id="iniciar-el-debugging">
+<h2>Iniciar el Debugging<a class="headerlink" href="#iniciar-el-debugging" title="Link to this heading">#</a></h2>
+<p>Para iniciar el proceso de debugging en un notebook:</p>
+<ol class="arabic simple">
+<li><p>Abre el notebook en VSCode.</p></li>
+<li><p>Encuentra la celda que deseas depurar.</p></li>
+<li><p>En la esquina superior derecha de la celda, verás un conjunto de iconos. Haz clic en el icono de “Debug Cell” (depurar celda), que parece un insecto con un triángulo de play.</p></li>
+</ol>
+<a class="reference internal image-reference" href="debug.png"><img alt="debug_btn" class="align-center" src="debug.png" style="width: 60%;" /></a>
+<section id="puntos-de-interrupcion-breakpoints">
+<h3>Puntos de interrupción (<em>Breakpoints</em>)<a class="headerlink" href="#puntos-de-interrupcion-breakpoints" title="Link to this heading">#</a></h3>
+<p>Los puntos de interrupción son una herramienta esencial para el <em>debugging</em>. Te permiten pausar la ejecución del código en puntos específicos para examinar el estado de tu programa. Para añadir un punto de interrupción en tu código:</p>
+<ol class="arabic simple">
+<li><p>Haz clic en el margen izquierdo de la línea de código donde desees añadir el punto de interrupción en la celda de tu notebook.</p></li>
+<li><p>Aparecerá un círculo rojo, indicando que el punto de interrupción ha sido establecido.</p></li>
+</ol>
+<a class="reference internal image-reference" href="breakpoint.png"><img alt="bpoint" class="align-center" src="breakpoint.png" style="width: 100%;" /></a>
+</section>
+</section>
+<section id="utilizando-el-depurador">
+<h2>Utilizando el depurador<a class="headerlink" href="#utilizando-el-depurador" title="Link to this heading">#</a></h2>
+<p>Una vez que la ejecución se ha pausado en un punto de interrupción, puedes:</p>
+<p>Inspeccionar Variables: Mira el estado de las variables en el panel “Variables” para entender cómo cambian a lo largo de tu código.</p>
+<a class="reference internal image-reference" href="debug_menu.png"><img alt="fishy" class="align-center" src="debug_menu.png" style="width: 80%;" /></a>
+<p>Ejecutar Paso a Paso: Utiliza los botones de control para ejecutar tu código paso a paso. Estos incluyen “Continuar” (<code class="docutils literal notranslate"><span class="pre">F5</span></code>), “Paso por encima” (<code class="docutils literal notranslate"><span class="pre">F10</span></code>), “Paso hacia adentro” (<code class="docutils literal notranslate"><span class="pre">F11</span></code>), y “Paso hacia afuera” (<code class="docutils literal notranslate"><span class="pre">Shift+F11</span></code>).</p>
+<a class="reference internal image-reference" href="controls.png"><img alt="controles" class="align-center" src="controls.png" style="width: 200px;" /></a>
+<p>La ejecución del programa se detendrá en el <em>breakpoint</em> marcado.</p>
+<a class="reference internal image-reference" href="breakpoint_2.png"><img alt="bp_2" class="align-center" src="breakpoint_2.png" style="width: 80%;" /></a>
+<p>Evaluar Expresiones: Puedes evaluar expresiones o modificar el valor de las variables en tiempo real utilizando la consola de depuración.</p>
+<a class="reference internal image-reference" href="debug_console.png"><img alt="db_console" class="align-center" src="debug_console.png" style="width: 80%;" /></a>
+</section>
+<section id="consejos-para-un-debugging-efectivo">
+<h2>Consejos para un Debugging efectivo<a class="headerlink" href="#consejos-para-un-debugging-efectivo" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Usa puntos de interrupción estratégicamente para detener tu código en lugares críticos donde sospeches que puedan estar ocurriendo los errores.</p></li>
+<li><p>Inspecciona y modifica variables para experimentar con diferentes soluciones sin tener que reiniciar la sesión de debugging.</p></li>
+<li><p>Aprovecha la consola de depuración para evaluar expresiones rápidamente y realizar comprobaciones adicionales sobre el estado de tu aplicación.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Debugging en Python</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pasos-para-realizar-el-debugging">Pasos para realizar el Debugging</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iniciar-el-debugging">Iniciar el Debugging</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#puntos-de-interrupcion-breakpoints">Puntos de interrupción (<em>Breakpoints</em>)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utilizando-el-depurador">Utilizando el depurador</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consejos-para-un-debugging-efectivo">Consejos para un Debugging efectivo</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Equipo de Hiperautomatización e Inteligencia artificial
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

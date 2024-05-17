@@ -1,0 +1,670 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1. Instalación de Python y del entorno de desarrollo. &#8212; Curso de Centro de Excelencia en Inteligencia Artificial</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '1_Introduccion_Python/sesion_1/01_01-Instalacion_Notebooks_VSCode';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="2. Estructura de datos en Python." href="01_02-Estructuras_datos_Python.html" />
+    <link rel="prev" title="Introducción a Python para Ciencia de Datos" href="../../intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo_hiperautomatizacion_1.png" class="logo__image only-light" alt="Curso de Centro de Excelencia en Inteligencia Artificial - Home"/>
+    <script>document.write(`<img src="../../_static/logo_hiperautomatizacion_1.png" class="logo__image only-dark" alt="Curso de Centro de Excelencia en Inteligencia Artificial - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Introducción a Python para Ciencia de Datos
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Sesión 1 - Configuración del entorno de desarrollo.</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Instalación de Python y del entorno de desarrollo.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_02-Estructuras_datos_Python.html">2. Estructura de datos en Python.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_03-Tipos_Datos_Python.html">3. Tipos de variables en Python.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_09-Evaluacion_S1.html">4. Evaluación sesión 1.</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sesión 2 - Introducción al lenguaje de Python.</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../sesion_2/02_01-Control_Flujo_Funciones.html">5. Control de flujo y funciones.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_2/02_03-Debugging_en_Python.html">6. Control de errores en Python.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_2/02_04-Manipulacion_OS.html">7. Manipulación del Sistema de Archivos con Python.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_2/02_05_Programacion_Orientada_Objetos.html">8. Programación orientada a objetos en Python.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_2/02_09-Comandos_Magicos.html">9. Comandos del sistema y comandos mágicos.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_2/02_10-Evaluacion_S2.html">10. Evaluación sesión 2.</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sesión 3- Introducción a Numpy.</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../sesion_3/03_01-Librerias_Requerimientos_Git.html">11. Librerías, archivo de requerimientos y Git.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_3/03_02-Intro_Numpy.html">12. Introducción a numpy.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_3/03_09-Evaluacion_S3.html">13. Evaluación sesión 3.</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sesión 4 - Introducción a Pandas y matplotlib.</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../sesion_4/04_01-Intro_Pandas.html">14. Introducción a Pandas.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_4/04_02-Intro_Matplotlib.html">15. Introducción a Matplotlib.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_4/04_09-Evaluacion_S4.html">16. Evaluación sesión 4.</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/1_Introduccion_Python/sesion_1/01_01-Instalacion_Notebooks_VSCode.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Instalación de Python y del entorno de desarrollo.</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#porque-trabajar-con-python">1.1. ¿Porqué trabajar con Python?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-de-python-en-linux-windows-y-mac">1.2. Instalación de Python en Linux, Windows y Mac.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linux">1.2.1. Linux</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#macos">1.2.2. macOS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#windows">1.2.3. Windows</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebooks-en-vs-code">1.3. Jupyter Notebooks en VS Code</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visual-studio-code-vscode">1.3.1. Visual Studio Code (VSCode)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter">1.3.2. Jupyter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-o-abrir-un-jupyter-notebook">1.3.3. Crear o abrir un Jupyter Notebook.</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="instalacion-de-python-y-del-entorno-de-desarrollo">
+<h1><span class="section-number">1. </span>Instalación de Python y del entorno de desarrollo.<a class="headerlink" href="#instalacion-de-python-y-del-entorno-de-desarrollo" title="Link to this heading">#</a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#porque-trabajar-con-python" id="id1">¿Porqué trabajar con Python?</a></p></li>
+<li><p><a class="reference internal" href="#instalacion-de-python-en-linux-windows-y-mac" id="id2">Instalación de Python en Linux, Windows y Mac.</a></p>
+<ul>
+<li><p><a class="reference internal" href="#linux" id="id3">Linux</a></p></li>
+<li><p><a class="reference internal" href="#macos" id="id4">macOS</a></p></li>
+<li><p><a class="reference internal" href="#windows" id="id5">Windows</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#jupyter-notebooks-en-vs-code" id="id6">Jupyter Notebooks en VS Code</a></p>
+<ul>
+<li><p><a class="reference internal" href="#visual-studio-code-vscode" id="id7">Visual Studio Code (VSCode)</a></p></li>
+<li><p><a class="reference internal" href="#jupyter" id="id8">Jupyter</a></p></li>
+<li><p><a class="reference internal" href="#crear-o-abrir-un-jupyter-notebook" id="id9">Crear o abrir un Jupyter Notebook.</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="porque-trabajar-con-python">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink"><span class="section-number">1.1. </span>¿Porqué trabajar con Python?</a><a class="headerlink" href="#porque-trabajar-con-python" title="Link to this heading">#</a></h2>
+<a class="reference internal image-reference" href="../../_images/python_logo.png"><img alt="python" class="align-center" src="../../_images/python_logo.png" style="width: 200px;" /></a>
+<ul class="simple">
+<li><p>Es un lenguaje muy sencillo de comprender: Prácticamente es pseudocódigo indentado.</p></li>
+<li><p>Alto nivel: abstracciones para no pensar en detalle de implementación.</p></li>
+<li><p>Dinámicamente tipado: Tipos de variable son determinadas al correr el programa.</p>
+<ul>
+<li><p>No hay que especificar el tipo de las variables al declararlas (veremos los tipos de variables en un <a class="reference internal" href="01_03-Tipos_Datos_Python.html"><span class="std std-doc">cuaderno posterior</span></a>).</p></li>
+</ul>
+</li>
+<li><p>Lenguaje más popular del mundo; existen miles de librerías para realizar cualquier tarea que se requiera.</p></li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/popular.png"><img alt="popular" class="align-center" src="../../_images/popular.png" style="width: 80%;" /></a>
+</section>
+<section id="instalacion-de-python-en-linux-windows-y-mac">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink"><span class="section-number">1.2. </span>Instalación de Python en Linux, Windows y Mac.</a><a class="headerlink" href="#instalacion-de-python-en-linux-windows-y-mac" title="Link to this heading">#</a></h2>
+<p>Ahora veamos cómo realizar la instalación del lenguaje y el editor de Visual Studio Code para poder ejecutar código en un entorno local.</p>
+<div class="admonition-nota admonition">
+<p class="admonition-title">Nota</p>
+<p>En este curso se asumirá que se tiene instalado Python 3.10. Se recomienda instalar esta versión para evitar problemas de compatibilidad con el código que veremos.</p>
+</div>
+<section id="linux">
+<h3><a class="toc-backref" href="#id3" role="doc-backlink"><span class="section-number">1.2.1. </span>Linux</a><a class="headerlink" href="#linux" title="Link to this heading">#</a></h3>
+<a class="reference internal image-reference" href="../../_images/linux_logo.png"><img alt="fishy" class="align-center" src="../../_images/linux_logo.png" style="width: 200px;" /></a>
+<div class="admonition-nota admonition">
+<p class="admonition-title">Nota</p>
+<p>Python viene instalado por defecto en la mayoría de las distribuciones con Linux. Revisar cuál es la versión de Python que viene por defecto y, en caso de que no sea la 3.10, seguir los pasos de instalación.</p>
+</div>
+<ol class="arabic simple">
+<li><p>Usar el Administrador de paquetes (apt Ubuntu/Debian):</p>
+<ul class="simple">
+<li><p>Abrir la terminal.</p></li>
+<li><p>Actualizar la lista de paquetes <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">update</span></code>.</p></li>
+<li><p>Instalar python <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">python3.10</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Revisar versión</p>
+<ul class="simple">
+<li><p>Ejecutar `python -V.</p></li>
+</ul>
+</li>
+</ol>
+<p>También se puede instalar usando <a class="reference external" href="https://www.anaconda.com/download">Anaconda</a>, sin embargo, no será recomendado para este curso porque tiene problemas cuando queremos usar soluciones distribuidas. Veremos más adelante en el curso cómo usar <a class="reference internal" href="../sesion_3/03_01-Librerias_Requerimientos_Git.html"><span class="std std-doc">ambientes virtuales</span></a>, los cuáles son considerados la mejor práctica.</p>
+</section>
+<section id="macos">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink"><span class="section-number">1.2.2. </span>macOS</a><a class="headerlink" href="#macos" title="Link to this heading">#</a></h3>
+<a class="reference internal image-reference" href="../../_images/apple_logo.png"><img alt="fishy" class="align-center" src="../../_images/apple_logo.png" style="width: 200px;" /></a>
+<div class="admonition-nota admonition">
+<p class="admonition-title">Nota</p>
+<p>Python viene instalado en algunas versiones de OS. Al igual que en el caso de Ubuntu revisar cuál versión se tiene  y en caso de que no sea la 3.10 seguir los pasos de instalación.</p>
+</div>
+<ol class="arabic simple">
+<li><p>Usar Homebrew:</p>
+<ul class="simple">
+<li><p>Instalar Homebrew</p></li>
+</ul>
+</li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://raw.githubusercontent.com/Homebrew/install/master/install.sh<span class="k">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>- Instalar Python `brew install python`.
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Revisar versión de python.</p>
+<ul class="simple">
+<li><p>Ejecutar <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-V</span></code>.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="windows">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink"><span class="section-number">1.2.3. </span>Windows</a><a class="headerlink" href="#windows" title="Link to this heading">#</a></h3>
+<a class="reference internal image-reference" href="../../_images/windows_logo.png"><img alt="wd_logo" class="align-center" src="../../_images/windows_logo.png" style="width: 200px;" /></a>
+<ol class="arabic simple">
+<li><p>Descargar el instalador ejecutable.</p>
+<ul class="simple">
+<li><p>Descargar el instalador del <a class="reference external" href="https://www.python.org/downloads/release/python-3100/">sitio oficial</a>, ir a la parte de abajo y seleccionar alguno de los dos ejecutables de Windows (dependiendo de las especificaciones de su equipo) como se muestra en el recuadro rojo de la siguiente imagen.</p></li>
+<li><p>Ejecutar el instalador asegurarse de seleccionar la casilla que indica <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">Python</span> <span class="pre">to</span> <span class="pre">PATH</span></code>.</p></li>
+</ul>
+</li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/inst_py_windows.png"><img alt="wd_logo" class="align-center" src="../../_images/inst_py_windows.png" style="width: 100%;" /></a>
+</section>
+</section>
+<section id="jupyter-notebooks-en-vs-code">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink"><span class="section-number">1.3. </span>Jupyter Notebooks en VS Code</a><a class="headerlink" href="#jupyter-notebooks-en-vs-code" title="Link to this heading">#</a></h2>
+<section id="visual-studio-code-vscode">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink"><span class="section-number">1.3.1. </span>Visual Studio Code (VSCode)</a><a class="headerlink" href="#visual-studio-code-vscode" title="Link to this heading">#</a></h3>
+<a class="reference internal image-reference" href="../../_images/vscode_logo.png"><img alt="vscode" class="align-center" src="../../_images/vscode_logo.png" style="width: 200px;" /></a>
+<p>Visual Studio Code, comúnmente conocido como VSCode, es un editor de código fuente desarrollado por Microsoft. Disponible para Windows, Linux, y macOS, VSCode es gratuito y se puede descargar en el <a class="reference external" href="https://code.visualstudio.com/download">siguiente enlace</a>. Este editor es altamente personalizable, permitiendo a los usuarios modificar temas, atajos de teclado, preferencias, y más. Soporta una amplia gama de lenguajes de programación de manera nativa, y su funcionalidad puede ser extendida aún más mediante la instalación de <strong>extensiones</strong>, las cuales pueden añadir soporte para nuevos lenguajes, herramientas de desarrollo, y otras características como depuración y control de versiones.</p>
+<p>Se tienen que instalar extensiones que dan soporte a Python. Estas son sugeridas por VSCode al intentar ejecutar un cuaderno de Jupyter como veremos a continuación.</p>
+<a class="reference internal image-reference" href="../../_images/extensiones_py.png"><img alt="ext" class="align-center" src="../../_images/extensiones_py.png" style="width: 500px;" /></a>
+</section>
+<section id="jupyter">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink"><span class="section-number">1.3.2. </span>Jupyter</a><a class="headerlink" href="#jupyter" title="Link to this heading">#</a></h3>
+<p>Es una aplicación web de código abierto usado para crear y compartir código, visualizaciones, ecuaciones y texto. Nos permitirá crear cuadernos en los que podremos insertar celdas de código y de texto para realizar el desarrollo de nuestros proyectos.</p>
+<p>Su acrónimo proviene de los principales lenguajes de programación a los que da soporte: Julia, Python y R. Jupyter viene con el <strong>kernel IPython</strong>, que le permite escribir sus programas en Python, pero actualmente hay <a class="reference external" href="https://docs.jupyter.org/en/latest/projects/kernels.html">más de 100 kernels</a> más que pueden ser usados.</p>
+<a class="reference internal image-reference" href="../../_images/Jupyter_logo.png"><img alt="jupyter" class="align-center" src="../../_images/Jupyter_logo.png" style="width: 200px;" /></a>
+<ul class="simple">
+<li><p><em><strong>Kernel</strong></em> en el contexto de <strong>Jupyter</strong> puede definirse como un proceso que se ejecuta en segundo plano y proporciona soporte al lenguaje de programación, es decir es responsable de ejecutar el código dentro de la celda y retornar el resultado al frontend.</p></li>
+</ul>
+</section>
+<section id="crear-o-abrir-un-jupyter-notebook">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink"><span class="section-number">1.3.3. </span>Crear o abrir un Jupyter Notebook.</a><a class="headerlink" href="#crear-o-abrir-un-jupyter-notebook" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Ctrl+shift+P</span></code> y ejecutar <code class="docutils literal notranslate"><span class="pre">Create:</span> <span class="pre">New</span> <span class="pre">Jupyter</span> <span class="pre">Notebook</span></code> o crear un nuevo archivo con la extensión <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>. Así tendremos una ventana como la siguiente:</p></li>
+</ol>
+<img src="https://code.visualstudio.com/assets/docs/datascience/jupyter/native-code-cells-01.png" width="100%">
+<ol class="arabic simple" start="2">
+<li><p>En la parte superior derecha seleccionar el kernel.</p></li>
+</ol>
+<img src="https://code.visualstudio.com/assets/docs/datascience/jupyter/native-kernel-picker.png" width="100%">
+<ol class="arabic simple" start="3">
+<li><p>Después de seleccionar el kernel, en la parte inferior derecha de cada celda aparecerá el lenguaje soportado por el kernel.</p></li>
+</ol>
+<img src="https://code.visualstudio.com/assets/docs/datascience/jupyter/native-language-picker-01.png" width="100%">
+<ol class="arabic simple" start="4">
+<li><p>Para ejecutar código podemos seguir una de las siguientes opciones:</p></li>
+</ol>
+<ul class="simple">
+<li><p>Ejecutar celda actual <code class="docutils literal notranslate"><span class="pre">Ctrl+Enter</span></code>.</p></li>
+<li><p>Ejecutar celda actual y avanzar a la siguiente <code class="docutils literal notranslate"><span class="pre">Shift+Enter</span></code>.</p></li>
+<li><p>Usar directamente el icono de <code class="docutils literal notranslate"><span class="pre">Run</span></code> como se muestra en la imagen a continuación.</p></li>
+</ul>
+<img src="https://code.visualstudio.com/assets/docs/datascience/jupyter/native-code-cells-03.png" width="100%">
+<p>Otras opciones alternativas para correr más de una celda:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">All</span></code>: Ejecuta todas las celdas del cuaderno.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">All</span> <span class="pre">Above</span></code>: Ejecuta todas las celdas que están arriba de la celda seleccionada.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">All</span> <span class="pre">Below</span></code>: Ejecuta todas las celdas hacia abajo de la celda seleccionada.</p></li>
+</ul>
+<img src="https://code.visualstudio.com/assets/docs/datascience/jupyter/native-code-runs.png" width="100%">
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./1_Introduccion_Python\sesion_1"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../../intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Introducción a Python para Ciencia de Datos</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="01_02-Estructuras_datos_Python.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Estructura de datos en Python.</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#porque-trabajar-con-python">1.1. ¿Porqué trabajar con Python?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-de-python-en-linux-windows-y-mac">1.2. Instalación de Python en Linux, Windows y Mac.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linux">1.2.1. Linux</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#macos">1.2.2. macOS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#windows">1.2.3. Windows</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebooks-en-vs-code">1.3. Jupyter Notebooks en VS Code</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visual-studio-code-vscode">1.3.1. Visual Studio Code (VSCode)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter">1.3.2. Jupyter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-o-abrir-un-jupyter-notebook">1.3.3. Crear o abrir un Jupyter Notebook.</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Equipo de Hiperautomatización e Inteligencia artificial
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

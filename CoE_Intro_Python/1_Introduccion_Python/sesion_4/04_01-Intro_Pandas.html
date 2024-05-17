@@ -1,0 +1,2388 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>14. Introducción a Pandas. &#8212; Curso de Centro de Excelencia en Inteligencia Artificial</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '1_Introduccion_Python/sesion_4/04_01-Intro_Pandas';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="15. Introducción a Matplotlib." href="04_02-Intro_Matplotlib.html" />
+    <link rel="prev" title="13. Evaluación sesión 3." href="../sesion_3/03_09-Evaluacion_S3.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo_hiperautomatizacion_1.png" class="logo__image only-light" alt="Curso de Centro de Excelencia en Inteligencia Artificial - Home"/>
+    <script>document.write(`<img src="../../_static/logo_hiperautomatizacion_1.png" class="logo__image only-dark" alt="Curso de Centro de Excelencia en Inteligencia Artificial - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Introducción a Python para Ciencia de Datos
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Sesión 1 - Configuración del entorno de desarrollo.</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../sesion_1/01_01-Instalacion_Notebooks_VSCode.html">1. Instalación de Python y del entorno de desarrollo.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_1/01_02-Estructuras_datos_Python.html">2. Estructura de datos en Python.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_1/01_03-Tipos_Datos_Python.html">3. Tipos de variables en Python.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_1/01_09-Evaluacion_S1.html">4. Evaluación sesión 1.</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sesión 2 - Introducción al lenguaje de Python.</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../sesion_2/02_01-Control_Flujo_Funciones.html">5. Control de flujo y funciones.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_2/02_03-Debugging_en_Python.html">6. Control de errores en Python.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_2/02_04-Manipulacion_OS.html">7. Manipulación del Sistema de Archivos con Python.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_2/02_05_Programacion_Orientada_Objetos.html">8. Programación orientada a objetos en Python.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_2/02_09-Comandos_Magicos.html">9. Comandos del sistema y comandos mágicos.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_2/02_10-Evaluacion_S2.html">10. Evaluación sesión 2.</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sesión 3- Introducción a Numpy.</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../sesion_3/03_01-Librerias_Requerimientos_Git.html">11. Librerías, archivo de requerimientos y Git.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_3/03_02-Intro_Numpy.html">12. Introducción a numpy.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_3/03_09-Evaluacion_S3.html">13. Evaluación sesión 3.</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sesión 4 - Introducción a Pandas y matplotlib.</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">14. Introducción a Pandas.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_02-Intro_Matplotlib.html">15. Introducción a Matplotlib.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_09-Evaluacion_S4.html">16. Evaluación sesión 4.</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/1_Introduccion_Python/sesion_4/04_01-Intro_Pandas.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introducción a Pandas.</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-dataframes">14.1. Creación de DataFrames</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atributos-de-los-dataframes">14.1.1. Atributos de los dataframes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diferencia-entre-series-y-dataframe">14.1.2. Diferencia entre <code class="docutils literal notranslate"><span class="pre">Series</span></code> y <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-y-almacenamiento-de-datos">14.2. Carga y almacenamiento de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#navegando-por-el-dataframe">14.3. Navegando por el dataframe</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-loc">14.3.1. Uso de loc</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-iloc">14.3.2. Uso de iloc</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diferencias-clave">14.3.3. Diferencias clave</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manipulacion-simple-de-columnas">14.4. Manipulación simple de columnas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#masking-basico-en-pandas">14.5. <em>Masking</em> básico en Pandas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-masking-para-operaciones-condicionales">14.5.1. Uso de <em>Masking</em> para operaciones condicionales</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-indices">14.6. Uso de índices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-basica-de-dataframes">14.7. Visualización básica de Dataframes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-conjunto-de-ventas">14.8. Ejemplo de conjunto de ventas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cuantos-departamentos-hay">14.8.1. ¿Cuántos departamentos hay?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cuantos-registros-hay-de-cada-uno">14.9. ¿Cuántos registros hay de cada uno?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dia-con-mas-ventas-de-cada-departamento">14.10. Día con más ventas de cada departamento</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="introduccion-a-pandas">
+<h1><span class="section-number">14. </span>Introducción a Pandas.<a class="headerlink" href="#introduccion-a-pandas" title="Link to this heading">#</a></h1>
+<a class="reference internal image-reference" href="../../_images/Pandas_logo.png"><img alt="pandas logo" class="align-center" src="../../_images/Pandas_logo.png" style="width: 400px;" /></a>
+<p><a class="reference download internal" download="" href="../../_downloads/3af9d874cddaba27d4f36c935fb4c214/04_01-Intro_Pandas.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Descarga</span> <span class="pre">este</span> <span class="pre">archivo</span></code></a>.</p>
+<p>Pandas es una biblioteca de programación en Python que proporciona estructuras de datos flexibles y herramientas de análisis de datos para trabajar con datos de manera eficiente. Fue desarrollada para facilitar la manipulación y análisis de datos en Python.</p>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#creacion-de-dataframes" id="id1">Creación de DataFrames</a></p>
+<ul>
+<li><p><a class="reference internal" href="#atributos-de-los-dataframes" id="id2">Atributos de los dataframes</a></p></li>
+<li><p><a class="reference internal" href="#diferencia-entre-series-y-dataframe" id="id3">Diferencia entre <code class="docutils literal notranslate"><span class="pre">Series</span></code> y <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#carga-y-almacenamiento-de-datos" id="id4">Carga y almacenamiento de datos</a></p></li>
+<li><p><a class="reference internal" href="#navegando-por-el-dataframe" id="id5">Navegando por el dataframe</a></p>
+<ul>
+<li><p><a class="reference internal" href="#uso-de-loc" id="id6">Uso de loc</a></p></li>
+<li><p><a class="reference internal" href="#uso-de-iloc" id="id7">Uso de iloc</a></p></li>
+<li><p><a class="reference internal" href="#diferencias-clave" id="id8">Diferencias clave</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#manipulacion-simple-de-columnas" id="id9">Manipulación simple de columnas</a></p></li>
+<li><p><a class="reference internal" href="#masking-basico-en-pandas" id="id10"><em>Masking</em> básico en Pandas</a></p>
+<ul>
+<li><p><a class="reference internal" href="#uso-de-masking-para-operaciones-condicionales" id="id11">Uso de <em>Masking</em> para operaciones condicionales</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#uso-de-indices" id="id12">Uso de índices</a></p></li>
+<li><p><a class="reference internal" href="#visualizacion-basica-de-dataframes" id="id13">Visualización básica de Dataframes</a></p></li>
+<li><p><a class="reference internal" href="#ejemplo-de-conjunto-de-ventas" id="id14">Ejemplo de conjunto de ventas</a></p>
+<ul>
+<li><p><a class="reference internal" href="#cuantos-departamentos-hay" id="id15">¿Cuántos departamentos hay?</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#cuantos-registros-hay-de-cada-uno" id="id16">¿Cuántos registros hay de cada uno?</a></p></li>
+<li><p><a class="reference internal" href="#dia-con-mas-ventas-de-cada-departamento" id="id17">Día con más ventas de cada departamento</a></p></li>
+</ul>
+</nav>
+<section id="creacion-de-dataframes">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink"><span class="section-number">14.1. </span>Creación de DataFrames</a><a class="headerlink" href="#creacion-de-dataframes" title="Link to this heading">#</a></h2>
+<p>Un <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> es una estructura de datos tabular bidimensional con ejes etiquetados (filas y columnas). Veremos las formas más usuales de crear un Dataframe, pero primero necesitamos importar pandas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Crearemos un dataframe de diferentes maneras:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Con listas</span>
+<span class="n">df_basico</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]])</span>
+<span class="n">df_basico</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4</td>
+      <td>5</td>
+      <td>6</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_basico</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;fila_1&#39;</span><span class="p">,</span> <span class="s1">&#39;fila_2&#39;</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;col_1&#39;</span><span class="p">,</span> <span class="s1">&#39;col_2&#39;</span><span class="p">,</span> <span class="s1">&#39;col_3&#39;</span><span class="p">])</span>
+<span class="n">df_basico</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>col_1</th>
+      <th>col_2</th>
+      <th>col_3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>fila_1</th>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>fila_2</th>
+      <td>4</td>
+      <td>5</td>
+      <td>6</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Con un diccionario</span>
+<span class="n">df_basico</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;c_1&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="s1">&#39;c_2&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="s1">&#39;c_3&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">]})</span>
+<span class="n">df_basico</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>c_1</th>
+      <th>c_2</th>
+      <th>c_3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4</td>
+      <td>5</td>
+      <td>6</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_basico</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;c_1&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="s1">&#39;c_2&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="s1">&#39;c_3&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">]},</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;id_1&#39;</span><span class="p">,</span> <span class="s1">&#39;id_2&#39;</span><span class="p">])</span>
+<span class="n">df_basico</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>c_1</th>
+      <th>c_2</th>
+      <th>c_3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>id_1</th>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>id_2</th>
+      <td>4</td>
+      <td>5</td>
+      <td>6</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<section id="atributos-de-los-dataframes">
+<h3><a class="toc-backref" href="#id2" role="doc-backlink"><span class="section-number">14.1.1. </span>Atributos de los dataframes</a><a class="headerlink" href="#atributos-de-los-dataframes" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Diferencia entre atributo y método en un dataframe</span>
+<span class="c1">#Atributo sobre el tamaño de nuestro dataframe</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Tamaño del dataframe :&#39;</span><span class="p">,</span> <span class="n">df_basico</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+<span class="c1">#Atributo sobre la forma de nuestro dataframe</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Forma del dataframe :&#39;</span><span class="p">,</span> <span class="n">df_basico</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># El DataFrame tiene un atributo llamado &quot;columns&quot;, lo que nos dice las columnas</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Columnas de nuestro dataframe&#39;</span><span class="p">,</span> <span class="n">df_basico</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="c1"># El DataFrame tiene un atributo llamado &quot;index&quot;, lo que nos dice las filas</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Filas de nuestro dataframe&#39;</span><span class="p">,</span> <span class="n">df_basico</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tamaño del dataframe : 6
+Forma del dataframe : (2, 3)
+Columnas de nuestro dataframe Index([&#39;c_1&#39;, &#39;c_2&#39;, &#39;c_3&#39;], dtype=&#39;object&#39;)
+Filas de nuestro dataframe Index([&#39;id_1&#39;, &#39;id_2&#39;], dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="diferencia-entre-series-y-dataframe">
+<h3><a class="toc-backref" href="#id3" role="doc-backlink"><span class="section-number">14.1.2. </span>Diferencia entre <code class="docutils literal notranslate"><span class="pre">Series</span></code> y <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code></a><a class="headerlink" href="#diferencia-entre-series-y-dataframe" title="Link to this heading">#</a></h3>
+<p>Un <strong>DataFrame</strong> es bidimensional y puede contener múltiples columnas de diferentes tipos de datos, mientras que una <strong>Serie</strong> es unidimensional y generalmente se utiliza para representar una sola columna de datos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Series</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Un ejemplo de una serie es :&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">df_basico</span><span class="p">[</span><span class="s1">&#39;c_2&#39;</span><span class="p">])</span>
+<span class="c1"># DataFrame</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Un ejemplo de un dataframe es :&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_basico</span><span class="p">[[</span><span class="s1">&#39;c_2&#39;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Un ejemplo de una serie es :
+id_1    2
+id_2    5
+Name: c_2, dtype: int64
+Un ejemplo de un dataframe es :
+      c_2
+id_1    2
+id_2    5
+</pre></div>
+</div>
+</div>
+</div>
+<p>Para crear una serie se necesita lo siguiente:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creación de una Series</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">&#39;Python&#39;</span><span class="p">,</span> <span class="s1">&#39;Java&#39;</span><span class="p">,</span> <span class="s1">&#39;C++&#39;</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Lenguaje&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Series creada:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Series creada:
+0    Python
+1      Java
+2       C++
+Name: Lenguaje, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div style='background-color:#4874f7; color:white; padding:10px;'>
+    <h2>Ejercicio</h2>
+    Crear un dataframe con las columnas de nombre, piso y torre de con información de 3 compañeros del grupo.
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">empleados_gs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;nombre&#39;</span><span class="p">:[</span><span class="s1">&#39;Fernanda&#39;</span><span class="p">,</span> <span class="s1">&#39;Anel&#39;</span><span class="p">,</span> <span class="s1">&#39;Luis&#39;</span><span class="p">],</span> <span class="s1">&#39;piso&#39;</span><span class="p">:[</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="s1">&#39;torre&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">]},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;id_1&#39;</span><span class="p">,</span> <span class="s1">&#39;id_2&#39;</span><span class="p">,</span> <span class="s1">&#39;id_3&#39;</span><span class="p">])</span>
+<span class="n">empleados_gs</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>nombre</th>
+      <th>piso</th>
+      <th>torre</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>id_1</th>
+      <td>Fernanda</td>
+      <td>7</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <th>id_2</th>
+      <td>Anel</td>
+      <td>7</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <th>id_3</th>
+      <td>Luis</td>
+      <td>3</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="carga-y-almacenamiento-de-datos">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink"><span class="section-number">14.2. </span>Carga y almacenamiento de datos</a><a class="headerlink" href="#carga-y-almacenamiento-de-datos" title="Link to this heading">#</a></h2>
+<p>Pandas soporta la carga y el almacenamiento de datos en una amplia variedad de formatos de archivo, incluyendo <strong>CSV</strong>, <strong>Excel</strong>, <strong>JSON</strong>, y más. A continuación, cargaremos datos desde un archivo CSV y luego los almacenaremos en un nuevo archivo.</p>
+<p>Pueden <a class="reference download internal" download="" href="../../_downloads/191776819d4f967b1e62c66dd63e6f09/banco_anonimo.csv"><code class="xref download docutils literal notranslate"><span class="pre">descargar</span> <span class="pre">el</span> <span class="pre">archivo</span> <span class="pre">csv</span> <span class="pre">aquí</span></code></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Carga de datos desde un archivo CSV</span>
+<span class="n">bancos_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;banco_anonimo.csv&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Datos cargados:&quot;</span><span class="p">)</span>
+<span class="n">bancos_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Datos cargados:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>banco</th>
+      <th>CONSUMO</th>
+      <th>MICROCRÉDITO</th>
+      <th>PRÉSTAMOS MÍNIMA</th>
+      <th>PRÉSTAMOS MÁXIMA</th>
+      <th>PRÉSTAMOS MODA</th>
+      <th>PRÉSTAMOS PROM. POND.</th>
+      <th>clase</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>banco_1</td>
+      <td>30.67</td>
+      <td>13.01</td>
+      <td>3.00</td>
+      <td>44.65</td>
+      <td>23.84</td>
+      <td>10.12</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>banco_azteca</td>
+      <td>70.50</td>
+      <td>50.33</td>
+      <td>1.00</td>
+      <td>168.31</td>
+      <td>61.97</td>
+      <td>69.88</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>banco_3</td>
+      <td>24.24</td>
+      <td>11.95</td>
+      <td>1.00</td>
+      <td>50.04</td>
+      <td>8.03</td>
+      <td>8.01</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>banco_4</td>
+      <td>57.92</td>
+      <td>45.27</td>
+      <td>10.00</td>
+      <td>99.76</td>
+      <td>65.05</td>
+      <td>51.19</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>banco_5</td>
+      <td>20.28</td>
+      <td>15.98</td>
+      <td>4.25</td>
+      <td>38.24</td>
+      <td>19.59</td>
+      <td>13.30</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Métodos para visualizar la base de datos:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">head(n)</span></code>: muestra los primero n datos.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tail(n)</span></code>: muestra los últimos n datos.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sample(n)</span></code>: muestra de n datos aleatorios.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bancos_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>banco</th>
+      <th>CONSUMO</th>
+      <th>MICROCRÉDITO</th>
+      <th>PRÉSTAMOS MÍNIMA</th>
+      <th>PRÉSTAMOS MÁXIMA</th>
+      <th>PRÉSTAMOS MODA</th>
+      <th>PRÉSTAMOS PROM. POND.</th>
+      <th>clase</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>banco_1</td>
+      <td>30.67</td>
+      <td>13.01</td>
+      <td>3.0</td>
+      <td>44.65</td>
+      <td>23.84</td>
+      <td>10.12</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>banco_azteca</td>
+      <td>70.50</td>
+      <td>50.33</td>
+      <td>1.0</td>
+      <td>168.31</td>
+      <td>61.97</td>
+      <td>69.88</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>banco_3</td>
+      <td>24.24</td>
+      <td>11.95</td>
+      <td>1.0</td>
+      <td>50.04</td>
+      <td>8.03</td>
+      <td>8.01</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bancos_df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>banco</th>
+      <th>CONSUMO</th>
+      <th>MICROCRÉDITO</th>
+      <th>PRÉSTAMOS MÍNIMA</th>
+      <th>PRÉSTAMOS MÁXIMA</th>
+      <th>PRÉSTAMOS MODA</th>
+      <th>PRÉSTAMOS PROM. POND.</th>
+      <th>clase</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>8</th>
+      <td>banco_9</td>
+      <td>17.56</td>
+      <td>13.02</td>
+      <td>1.00</td>
+      <td>50.00</td>
+      <td>18.95</td>
+      <td>9.48</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>banco_10</td>
+      <td>13.41</td>
+      <td>16.81</td>
+      <td>5.50</td>
+      <td>38.00</td>
+      <td>14.94</td>
+      <td>11.17</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>banco_11</td>
+      <td>13.05</td>
+      <td>8.66</td>
+      <td>4.25</td>
+      <td>63.58</td>
+      <td>8.28</td>
+      <td>7.46</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>banco_12</td>
+      <td>12.38</td>
+      <td>11.62</td>
+      <td>1.00</td>
+      <td>16.00</td>
+      <td>15.99</td>
+      <td>9.81</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>banco_13</td>
+      <td>46.76</td>
+      <td>8.90</td>
+      <td>5.00</td>
+      <td>60.00</td>
+      <td>17.00</td>
+      <td>16.67</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>banco_14</td>
+      <td>16.06</td>
+      <td>22.84</td>
+      <td>1.50</td>
+      <td>96.00</td>
+      <td>12.14</td>
+      <td>8.91</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bancos_df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>banco</th>
+      <th>CONSUMO</th>
+      <th>MICROCRÉDITO</th>
+      <th>PRÉSTAMOS MÍNIMA</th>
+      <th>PRÉSTAMOS MÁXIMA</th>
+      <th>PRÉSTAMOS MODA</th>
+      <th>PRÉSTAMOS PROM. POND.</th>
+      <th>clase</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>banco_3</td>
+      <td>24.24</td>
+      <td>11.95</td>
+      <td>1.00</td>
+      <td>50.04</td>
+      <td>8.03</td>
+      <td>8.01</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>banco_14</td>
+      <td>16.06</td>
+      <td>22.84</td>
+      <td>1.50</td>
+      <td>96.00</td>
+      <td>12.14</td>
+      <td>8.91</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>banco_7</td>
+      <td>48.42</td>
+      <td>8.22</td>
+      <td>1.00</td>
+      <td>45.00</td>
+      <td>24.00</td>
+      <td>17.80</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>banco_8</td>
+      <td>32.32</td>
+      <td>12.24</td>
+      <td>3.25</td>
+      <td>33.00</td>
+      <td>8.03</td>
+      <td>8.58</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>banco_6</td>
+      <td>17.20</td>
+      <td>13.11</td>
+      <td>5.00</td>
+      <td>30.00</td>
+      <td>18.04</td>
+      <td>16.54</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>A veces es mejor usar sample porque puede que los primeros datos estén bien y queremos obtener una vista más completa de la base de datos.</p>
+<p>Para almacenar un df en memoria se usa el método <code class="docutils literal notranslate"><span class="pre">df.to_csv(&quot;ruta_relativa_al_archivo.csv&quot;)</span></code> si se desea almacenar el índice se pone el argumento <code class="docutils literal notranslate"><span class="pre">index=True</span></code> que  está así por defecto y si no se pone el <code class="docutils literal notranslate"><span class="pre">index=False</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bancos_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;bancos_nuevo.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="navegando-por-el-dataframe">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink"><span class="section-number">14.3. </span>Navegando por el dataframe</a><a class="headerlink" href="#navegando-por-el-dataframe" title="Link to this heading">#</a></h2>
+<p>Se tienen dos métodos básicos para buscar y desplegar información en pandas, estos métodos se llaman desde el objeto del dataframe como mencionaremos a continuación.</p>
+<section id="uso-de-loc">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink"><span class="section-number">14.3.1. </span>Uso de loc</a><a class="headerlink" href="#uso-de-loc" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">loc</span></code> se utiliza para acceder a un grupo de filas y columnas por etiquetas o una matriz booleana. loc incluye tanto el punto final como el punto de inicio. Se utiliza principalmente con etiquetas de columna/nombre de fila.</p>
+<p>Ejemplo: Seleccionar todas las filas y las columnas CONSUMO y MICROCREDITO para los bancos de la clase 0.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Selección usando loc</span>
+<span class="n">bancos_filtro</span> <span class="o">=</span> <span class="n">bancos_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bancos_df</span><span class="p">[</span><span class="s1">&#39;clase&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;CONSUMO&#39;</span><span class="p">,</span> <span class="s1">&#39;MICROCRÉDITO&#39;</span><span class="p">]]</span>
+<span class="n">bancos_filtro</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CONSUMO</th>
+      <th>MICROCRÉDITO</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>24.24</td>
+      <td>11.95</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>17.56</td>
+      <td>13.02</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>13.05</td>
+      <td>8.66</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>16.06</td>
+      <td>22.84</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="uso-de-iloc">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink"><span class="section-number">14.3.2. </span>Uso de iloc</a><a class="headerlink" href="#uso-de-iloc" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">iloc</span></code> se utiliza para acceder a un grupo de filas y columnas por posición de índice (enteros). iloc no incluye el punto final, similar a la indexación estándar de Python.</p>
+<p>Ejemplo: Seleccionar las primeras 5 filas y las primeras 4 columnas (que corresponden a las medidas de las flores).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Selección usando iloc</span>
+<span class="n">primeras_cinco_filas</span> <span class="o">=</span> <span class="n">bancos_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">primeras_cinco_filas</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>banco</th>
+      <th>CONSUMO</th>
+      <th>MICROCRÉDITO</th>
+      <th>PRÉSTAMOS MÍNIMA</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>banco_1</td>
+      <td>30.67</td>
+      <td>13.01</td>
+      <td>3.00</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>banco_azteca</td>
+      <td>70.50</td>
+      <td>50.33</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>banco_3</td>
+      <td>24.24</td>
+      <td>11.95</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>banco_4</td>
+      <td>57.92</td>
+      <td>45.27</td>
+      <td>10.00</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>banco_5</td>
+      <td>20.28</td>
+      <td>15.98</td>
+      <td>4.25</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="diferencias-clave">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink"><span class="section-number">14.3.3. </span>Diferencias clave</a><a class="headerlink" href="#diferencias-clave" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>loc: Accede por el nombre de la columna/fila o condición booleana. Es inclusivo en todos los índices.</p></li>
+<li><p>iloc: Accede por índices enteros de la posición de las columnas. Es inclusivo en el límite izquierdo y exclusivo en el derecho.</p></li>
+</ul>
+</section>
+</section>
+<section id="manipulacion-simple-de-columnas">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink"><span class="section-number">14.4. </span>Manipulación simple de columnas</a><a class="headerlink" href="#manipulacion-simple-de-columnas" title="Link to this heading">#</a></h2>
+<p>Realizar operaciones aritméticas básicas sobre las columnas de un DataFrame es sencillo con Pandas. Podemos sumar, restar, multiplicar y dividir columnas directamente. A continuación, multiplicaremos dos columnas y crearemos una nueva columna con el resultado.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Multiplicar la longitud y el ancho del sépalo para obtener el área</span>
+<span class="n">bancos_df</span><span class="p">[</span><span class="s1">&#39;PROMEDIO_CONSUMO_MICRO&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">bancos_df</span><span class="p">[</span><span class="s1">&#39;CONSUMO&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">bancos_df</span><span class="p">[</span><span class="s1">&#39;MICROCRÉDITO&#39;</span><span class="p">])</span><span class="o">/</span><span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DataFrame con nueva columna &#39;PROMEDIO_CONSUMO_MICRO&#39;:&quot;</span><span class="p">)</span>
+<span class="n">bancos_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DataFrame con nueva columna &#39;PROMEDIO_CONSUMO_MICRO&#39;:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>banco</th>
+      <th>CONSUMO</th>
+      <th>MICROCRÉDITO</th>
+      <th>PRÉSTAMOS MÍNIMA</th>
+      <th>PRÉSTAMOS MÁXIMA</th>
+      <th>PRÉSTAMOS MODA</th>
+      <th>PRÉSTAMOS PROM. POND.</th>
+      <th>clase</th>
+      <th>PROMEDIO_CONSUMO_MICRO</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>banco_1</td>
+      <td>30.67</td>
+      <td>13.01</td>
+      <td>3.00</td>
+      <td>44.65</td>
+      <td>23.84</td>
+      <td>10.12</td>
+      <td>2</td>
+      <td>21.840</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>banco_azteca</td>
+      <td>70.50</td>
+      <td>50.33</td>
+      <td>1.00</td>
+      <td>168.31</td>
+      <td>61.97</td>
+      <td>69.88</td>
+      <td>2</td>
+      <td>60.415</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>banco_3</td>
+      <td>24.24</td>
+      <td>11.95</td>
+      <td>1.00</td>
+      <td>50.04</td>
+      <td>8.03</td>
+      <td>8.01</td>
+      <td>0</td>
+      <td>18.095</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>banco_4</td>
+      <td>57.92</td>
+      <td>45.27</td>
+      <td>10.00</td>
+      <td>99.76</td>
+      <td>65.05</td>
+      <td>51.19</td>
+      <td>2</td>
+      <td>51.595</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>banco_5</td>
+      <td>20.28</td>
+      <td>15.98</td>
+      <td>4.25</td>
+      <td>38.24</td>
+      <td>19.59</td>
+      <td>13.30</td>
+      <td>2</td>
+      <td>18.130</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="masking-basico-en-pandas">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink"><span class="section-number">14.5. </span><em>Masking</em> básico en Pandas</a><a class="headerlink" href="#masking-basico-en-pandas" title="Link to this heading">#</a></h2>
+<p>El “masking” en Pandas se refiere al proceso de seleccionar o modificar filas de un <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> o elementos de una <code class="docutils literal notranslate"><span class="pre">Series</span></code> basado en condiciones booleanas. Es una técnica poderosa para filtrar datos y realizar operaciones condicionales. A continuación, exploraremos cómo aplicar el masking para trabajar con el dataset de Iris, un conjunto de datos clásico en el campo de machine learning y estadísticas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creación de la máscara booleana</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">bancos_df</span><span class="p">[</span><span class="s1">&#39;clase&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span>
+
+<span class="c1"># Aplicación de la máscara al DataFrame</span>
+<span class="n">bancos_clase2</span> <span class="o">=</span> <span class="n">bancos_df</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+
+<span class="n">bancos_clase2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>banco</th>
+      <th>CONSUMO</th>
+      <th>MICROCRÉDITO</th>
+      <th>PRÉSTAMOS MÍNIMA</th>
+      <th>PRÉSTAMOS MÁXIMA</th>
+      <th>PRÉSTAMOS MODA</th>
+      <th>PRÉSTAMOS PROM. POND.</th>
+      <th>clase</th>
+      <th>PROMEDIO_CONSUMO_MICRO</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>banco_1</td>
+      <td>30.67</td>
+      <td>13.01</td>
+      <td>3.00</td>
+      <td>44.65</td>
+      <td>23.84</td>
+      <td>10.12</td>
+      <td>2</td>
+      <td>21.840</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>banco_azteca</td>
+      <td>70.50</td>
+      <td>50.33</td>
+      <td>1.00</td>
+      <td>168.31</td>
+      <td>61.97</td>
+      <td>69.88</td>
+      <td>2</td>
+      <td>60.415</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>banco_4</td>
+      <td>57.92</td>
+      <td>45.27</td>
+      <td>10.00</td>
+      <td>99.76</td>
+      <td>65.05</td>
+      <td>51.19</td>
+      <td>2</td>
+      <td>51.595</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>banco_5</td>
+      <td>20.28</td>
+      <td>15.98</td>
+      <td>4.25</td>
+      <td>38.24</td>
+      <td>19.59</td>
+      <td>13.30</td>
+      <td>2</td>
+      <td>18.130</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>banco_6</td>
+      <td>17.20</td>
+      <td>13.11</td>
+      <td>5.00</td>
+      <td>30.00</td>
+      <td>18.04</td>
+      <td>16.54</td>
+      <td>2</td>
+      <td>15.155</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<section id="uso-de-masking-para-operaciones-condicionales">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink"><span class="section-number">14.5.1. </span>Uso de <em>Masking</em> para operaciones condicionales</a><a class="headerlink" href="#uso-de-masking-para-operaciones-condicionales" title="Link to this heading">#</a></h3>
+<p>El masking no solo se utiliza para filtrar datos, sino también para aplicar operaciones a filas específicas. Por ejemplo, incrementaremos la tasa <code class="docutils literal notranslate"><span class="pre">PRÉSTAMOS</span> <span class="pre">MÍNIMA</span></code> en 0.5 para la clase 2.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Aplicando operación condicional usando masking</span>
+<span class="n">bancos_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="s1">&#39;PRÉSTAMOS MÍNIMA&#39;</span><span class="p">]</span> <span class="o">+=</span> <span class="mf">0.5</span>
+
+<span class="c1"># Verificando los cambios</span>
+<span class="n">bancos_df</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>banco</th>
+      <th>CONSUMO</th>
+      <th>MICROCRÉDITO</th>
+      <th>PRÉSTAMOS MÍNIMA</th>
+      <th>PRÉSTAMOS MÁXIMA</th>
+      <th>PRÉSTAMOS MODA</th>
+      <th>PRÉSTAMOS PROM. POND.</th>
+      <th>clase</th>
+      <th>PROMEDIO_CONSUMO_MICRO</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>banco_1</td>
+      <td>30.67</td>
+      <td>13.01</td>
+      <td>3.50</td>
+      <td>44.65</td>
+      <td>23.84</td>
+      <td>10.12</td>
+      <td>2</td>
+      <td>21.840</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>banco_azteca</td>
+      <td>70.50</td>
+      <td>50.33</td>
+      <td>1.50</td>
+      <td>168.31</td>
+      <td>61.97</td>
+      <td>69.88</td>
+      <td>2</td>
+      <td>60.415</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>banco_4</td>
+      <td>57.92</td>
+      <td>45.27</td>
+      <td>10.50</td>
+      <td>99.76</td>
+      <td>65.05</td>
+      <td>51.19</td>
+      <td>2</td>
+      <td>51.595</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>banco_5</td>
+      <td>20.28</td>
+      <td>15.98</td>
+      <td>4.75</td>
+      <td>38.24</td>
+      <td>19.59</td>
+      <td>13.30</td>
+      <td>2</td>
+      <td>18.130</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>banco_6</td>
+      <td>17.20</td>
+      <td>13.11</td>
+      <td>5.50</td>
+      <td>30.00</td>
+      <td>18.04</td>
+      <td>16.54</td>
+      <td>2</td>
+      <td>15.155</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="uso-de-indices">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink"><span class="section-number">14.6. </span>Uso de índices</a><a class="headerlink" href="#uso-de-indices" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bancos_df_idx</span> <span class="o">=</span> <span class="n">bancos_df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;banco&#39;</span><span class="p">)</span>
+<span class="n">bancos_df_idx</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>CONSUMO</th>
+      <th>MICROCRÉDITO</th>
+      <th>PRÉSTAMOS MÍNIMA</th>
+      <th>PRÉSTAMOS MÁXIMA</th>
+      <th>PRÉSTAMOS MODA</th>
+      <th>PRÉSTAMOS PROM. POND.</th>
+      <th>clase</th>
+      <th>PROMEDIO_CONSUMO_MICRO</th>
+    </tr>
+    <tr>
+      <th>banco</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>banco_1</th>
+      <td>30.67</td>
+      <td>13.01</td>
+      <td>3.50</td>
+      <td>44.65</td>
+      <td>23.84</td>
+      <td>10.12</td>
+      <td>2</td>
+      <td>21.840</td>
+    </tr>
+    <tr>
+      <th>banco_azteca</th>
+      <td>70.50</td>
+      <td>50.33</td>
+      <td>1.50</td>
+      <td>168.31</td>
+      <td>61.97</td>
+      <td>69.88</td>
+      <td>2</td>
+      <td>60.415</td>
+    </tr>
+    <tr>
+      <th>banco_3</th>
+      <td>24.24</td>
+      <td>11.95</td>
+      <td>1.00</td>
+      <td>50.04</td>
+      <td>8.03</td>
+      <td>8.01</td>
+      <td>0</td>
+      <td>18.095</td>
+    </tr>
+    <tr>
+      <th>banco_4</th>
+      <td>57.92</td>
+      <td>45.27</td>
+      <td>10.50</td>
+      <td>99.76</td>
+      <td>65.05</td>
+      <td>51.19</td>
+      <td>2</td>
+      <td>51.595</td>
+    </tr>
+    <tr>
+      <th>banco_5</th>
+      <td>20.28</td>
+      <td>15.98</td>
+      <td>4.75</td>
+      <td>38.24</td>
+      <td>19.59</td>
+      <td>13.30</td>
+      <td>2</td>
+      <td>18.130</td>
+    </tr>
+    <tr>
+      <th>banco_6</th>
+      <td>17.20</td>
+      <td>13.11</td>
+      <td>5.50</td>
+      <td>30.00</td>
+      <td>18.04</td>
+      <td>16.54</td>
+      <td>2</td>
+      <td>15.155</td>
+    </tr>
+    <tr>
+      <th>banco_7</th>
+      <td>48.42</td>
+      <td>8.22</td>
+      <td>1.50</td>
+      <td>45.00</td>
+      <td>24.00</td>
+      <td>17.80</td>
+      <td>2</td>
+      <td>28.320</td>
+    </tr>
+    <tr>
+      <th>banco_8</th>
+      <td>32.32</td>
+      <td>12.24</td>
+      <td>3.75</td>
+      <td>33.00</td>
+      <td>8.03</td>
+      <td>8.58</td>
+      <td>2</td>
+      <td>22.280</td>
+    </tr>
+    <tr>
+      <th>banco_9</th>
+      <td>17.56</td>
+      <td>13.02</td>
+      <td>1.00</td>
+      <td>50.00</td>
+      <td>18.95</td>
+      <td>9.48</td>
+      <td>0</td>
+      <td>15.290</td>
+    </tr>
+    <tr>
+      <th>banco_10</th>
+      <td>13.41</td>
+      <td>16.81</td>
+      <td>6.00</td>
+      <td>38.00</td>
+      <td>14.94</td>
+      <td>11.17</td>
+      <td>2</td>
+      <td>15.110</td>
+    </tr>
+    <tr>
+      <th>banco_11</th>
+      <td>13.05</td>
+      <td>8.66</td>
+      <td>4.25</td>
+      <td>63.58</td>
+      <td>8.28</td>
+      <td>7.46</td>
+      <td>0</td>
+      <td>10.855</td>
+    </tr>
+    <tr>
+      <th>banco_12</th>
+      <td>12.38</td>
+      <td>11.62</td>
+      <td>1.00</td>
+      <td>16.00</td>
+      <td>15.99</td>
+      <td>9.81</td>
+      <td>1</td>
+      <td>12.000</td>
+    </tr>
+    <tr>
+      <th>banco_13</th>
+      <td>46.76</td>
+      <td>8.90</td>
+      <td>5.50</td>
+      <td>60.00</td>
+      <td>17.00</td>
+      <td>16.67</td>
+      <td>2</td>
+      <td>27.830</td>
+    </tr>
+    <tr>
+      <th>banco_14</th>
+      <td>16.06</td>
+      <td>22.84</td>
+      <td>1.50</td>
+      <td>96.00</td>
+      <td>12.14</td>
+      <td>8.91</td>
+      <td>0</td>
+      <td>19.450</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> bancos_df_idx.loc[&#39;banco_azteca&#39;,:]
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>44.5 µs ± 4.55 µs per loop (mean ± std. dev. of 7 runs, 10,000 loops each)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> bancos_df[bancos_df[&#39;banco&#39;]==&#39;banco_azteca&#39;]
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>190 µs ± 36.2 µs per loop (mean ± std. dev. of 7 runs, 10,000 loops each)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Los índices tienen que ser únicos porque son la manera de referenciar a una fila única (recuerden los <a class="reference internal" href="../sesion_1/01_02-Estructuras_datos_Python.html"><span class="std std-doc">diccionarios</span></a>).</p>
+<div style='background-color:#4874f7; color:white; padding:10px;'>
+    <h2>Pregunta</h2>
+    ¿Cómo comprobaríamos que una columna puede ser un índice?    
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bancos_unicos</span> <span class="o">=</span> <span class="n">bancos_df</span><span class="p">[</span><span class="s1">&#39;banco&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<span class="n">longitud_bancos_unicos</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">bancos_unicos</span><span class="p">)</span>
+
+<span class="nb">len</span><span class="p">(</span><span class="n">bancos_df</span><span class="p">)</span><span class="o">==</span><span class="n">longitud_bancos_unicos</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualizacion-basica-de-dataframes">
+<h2><a class="toc-backref" href="#id13" role="doc-backlink"><span class="section-number">14.7. </span>Visualización básica de Dataframes</a><a class="headerlink" href="#visualizacion-basica-de-dataframes" title="Link to this heading">#</a></h2>
+<p>La visualización es una parte crucial del análisis de datos. Pandas, junto con Matplotlib, facilita la creación de gráficos a partir de DataFrames. Veamos cómo visualizar la relación entre dos variables con un gráfico de dispersión.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span> <span class="c1"># Estilo de gráficos ggplot</span>
+<span class="n">bancos_df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;CONSUMO&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;MICROCRÉDITO&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;CONSUMO VS MICROCRÉDITO&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/eef755e16b4de0092b2868b436a3d6485b7bf071f54ffb0e53484326185163be.png" src="../../_images/eef755e16b4de0092b2868b436a3d6485b7bf071f54ffb0e53484326185163be.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Otro tipo de visualización con líneas</span>
+<span class="n">bancos_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;clase&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/43ee0b1161773220e5089b54f1a90963fee93d99a5e77d199273b296406a420f.png" src="../../_images/43ee0b1161773220e5089b54f1a90963fee93d99a5e77d199273b296406a420f.png" />
+</div>
+</div>
+</section>
+<section id="ejemplo-de-conjunto-de-ventas">
+<h2><a class="toc-backref" href="#id14" role="doc-backlink"><span class="section-number">14.8. </span>Ejemplo de conjunto de ventas</a><a class="headerlink" href="#ejemplo-de-conjunto-de-ventas" title="Link to this heading">#</a></h2>
+<p>Ahora estudiaremos el conjunto de ventas contenido dentro del archivo <code class="docutils literal notranslate"><span class="pre">ventas.csv</span></code> este archivo contiene las ganancias de cada departamento de una tienda a lo largo del tiempo.</p>
+<p>Pueden <a class="reference download internal" download="" href="../../_downloads/bed8d7843611ed6984be2e91c2d4e956/ventas.csv"><code class="xref download docutils literal notranslate"><span class="pre">descargar</span> <span class="pre">el</span> <span class="pre">archivo</span> <span class="pre">csv</span> <span class="pre">aquí</span></code></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ventas_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./ventas.csv&#39;</span><span class="p">)</span>
+<span class="n">ventas_df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Departamento</th>
+      <th>Monto_Venta</th>
+      <th>Fecha</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>90</th>
+      <td>Electrónica</td>
+      <td>1923</td>
+      <td>2022-04-01</td>
+    </tr>
+    <tr>
+      <th>67</th>
+      <td>Alimentos</td>
+      <td>4487</td>
+      <td>2022-03-09</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>Hogar</td>
+      <td>2013</td>
+      <td>2022-02-10</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>Juguetes</td>
+      <td>2054</td>
+      <td>2022-04-10</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Juguetes</td>
+      <td>3191</td>
+      <td>2022-01-21</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<section id="cuantos-departamentos-hay">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink"><span class="section-number">14.8.1. </span>¿Cuántos departamentos hay?</a><a class="headerlink" href="#cuantos-departamentos-hay" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ventas_df</span><span class="p">[</span><span class="s1">&#39;Departamento&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;Alimentos&#39;, &#39;Electrónica&#39;, &#39;Juguetes&#39;, &#39;Ropa&#39;, &#39;Hogar&#39;],
+      dtype=object)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="cuantos-registros-hay-de-cada-uno">
+<h2><a class="toc-backref" href="#id16" role="doc-backlink"><span class="section-number">14.9. </span>¿Cuántos registros hay de cada uno?</a><a class="headerlink" href="#cuantos-registros-hay-de-cada-uno" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ventas_df</span><span class="p">[</span><span class="s1">&#39;Departamento&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Departamento
+Electrónica    22
+Juguetes       22
+Ropa           20
+Alimentos      19
+Hogar          17
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ventas_df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Departamento    0
+Monto_Venta     0
+Fecha           0
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="dia-con-mas-ventas-de-cada-departamento">
+<h2><a class="toc-backref" href="#id17" role="doc-backlink"><span class="section-number">14.10. </span>Día con más ventas de cada departamento</a><a class="headerlink" href="#dia-con-mas-ventas-de-cada-departamento" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">departamento</span> <span class="ow">in</span> <span class="n">ventas_df</span><span class="p">[</span><span class="s1">&#39;Departamento&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Departamento: &#39;</span><span class="p">,</span> <span class="n">departamento</span><span class="p">)</span>
+    <span class="c1"># ventas_df.query(f&#39;Departamento==&quot;{departamento}&quot;&#39;)</span>
+    <span class="n">ventas_df_departamento</span> <span class="o">=</span> <span class="n">ventas_df</span><span class="p">[</span><span class="n">ventas_df</span><span class="p">[</span><span class="s1">&#39;Departamento&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">departamento</span><span class="p">]</span>
+    <span class="n">ventas_df_departamento</span> <span class="o">=</span> <span class="n">ventas_df_departamento</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Fecha&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; Fecha de venta máximo:&#39;</span> <span class="p">,</span><span class="n">ventas_df_departamento</span><span class="p">[</span><span class="s1">&#39;Monto_Venta&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; Total de ventas máximas: &#39;</span><span class="p">,</span><span class="sa">f</span><span class="s1">&#39;$</span><span class="si">{</span><span class="n">ventas_df_departamento</span><span class="p">[</span><span class="s1">&#39;Monto_Venta&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s1"> pesos&#39;</span><span class="p">)</span>
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Departamento:  Alimentos
+ Fecha de venta máximo: 2022-03-09
+ Total de ventas máximas:  $4487 pesos
+Departamento:  Electrónica
+ Fecha de venta máximo: 2022-01-22
+ Total de ventas máximas:  $4803 pesos
+Departamento:  Juguetes
+ Fecha de venta máximo: 2022-03-05
+ Total de ventas máximas:  $4263 pesos
+Departamento:  Ropa
+ Fecha de venta máximo: 2022-01-28
+ Total de ventas máximas:  $4945 pesos
+Departamento:  Hogar
+ Fecha de venta máximo: 2022-04-04
+ Total de ventas máximas:  $4625 pesos
+</pre></div>
+</div>
+</div>
+</div>
+<p>Queremos ver las ventas que fueron mayores a 1000. En esos días queremos tener más personal para atender o tener una recolección de dinero más pronta.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">ventas_df</span><span class="p">[</span><span class="s1">&#39;Departamento&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Electrónica&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">ventas_df</span><span class="p">[</span><span class="s1">&#39;Monto_Venta&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">ventas_altas_electronica</span> <span class="o">=</span> <span class="n">ventas_df</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+<span class="n">ventas_altas_electronica</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Departamento</th>
+      <th>Monto_Venta</th>
+      <th>Fecha</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>Electrónica</td>
+      <td>4326</td>
+      <td>2022-01-02</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Electrónica</td>
+      <td>1252</td>
+      <td>2022-01-11</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Electrónica</td>
+      <td>2636</td>
+      <td>2022-01-15</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Electrónica</td>
+      <td>4803</td>
+      <td>2022-01-22</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Electrónica</td>
+      <td>1534</td>
+      <td>2022-01-24</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>Electrónica</td>
+      <td>3954</td>
+      <td>2022-01-27</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>Electrónica</td>
+      <td>3037</td>
+      <td>2022-02-01</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>Electrónica</td>
+      <td>2297</td>
+      <td>2022-02-05</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>Electrónica</td>
+      <td>2821</td>
+      <td>2022-02-13</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>Electrónica</td>
+      <td>1996</td>
+      <td>2022-02-14</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>Electrónica</td>
+      <td>2911</td>
+      <td>2022-02-16</td>
+    </tr>
+    <tr>
+      <th>53</th>
+      <td>Electrónica</td>
+      <td>2422</td>
+      <td>2022-02-23</td>
+    </tr>
+    <tr>
+      <th>76</th>
+      <td>Electrónica</td>
+      <td>1341</td>
+      <td>2022-03-18</td>
+    </tr>
+    <tr>
+      <th>80</th>
+      <td>Electrónica</td>
+      <td>1298</td>
+      <td>2022-03-22</td>
+    </tr>
+    <tr>
+      <th>84</th>
+      <td>Electrónica</td>
+      <td>3565</td>
+      <td>2022-03-26</td>
+    </tr>
+    <tr>
+      <th>85</th>
+      <td>Electrónica</td>
+      <td>2221</td>
+      <td>2022-03-27</td>
+    </tr>
+    <tr>
+      <th>90</th>
+      <td>Electrónica</td>
+      <td>1923</td>
+      <td>2022-04-01</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>Electrónica</td>
+      <td>2489</td>
+      <td>2022-04-07</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Este análisis se puede continuar para encontrar respuestas a la mayoría de las preguntas que uno se podría hacer del conjunto de datos.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./1_Introduccion_Python\sesion_4"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../sesion_3/03_09-Evaluacion_S3.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">13. </span>Evaluación sesión 3.</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="04_02-Intro_Matplotlib.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">15. </span>Introducción a Matplotlib.</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-dataframes">14.1. Creación de DataFrames</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atributos-de-los-dataframes">14.1.1. Atributos de los dataframes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diferencia-entre-series-y-dataframe">14.1.2. Diferencia entre <code class="docutils literal notranslate"><span class="pre">Series</span></code> y <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-y-almacenamiento-de-datos">14.2. Carga y almacenamiento de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#navegando-por-el-dataframe">14.3. Navegando por el dataframe</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-loc">14.3.1. Uso de loc</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-iloc">14.3.2. Uso de iloc</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diferencias-clave">14.3.3. Diferencias clave</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manipulacion-simple-de-columnas">14.4. Manipulación simple de columnas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#masking-basico-en-pandas">14.5. <em>Masking</em> básico en Pandas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-masking-para-operaciones-condicionales">14.5.1. Uso de <em>Masking</em> para operaciones condicionales</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-indices">14.6. Uso de índices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-basica-de-dataframes">14.7. Visualización básica de Dataframes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-conjunto-de-ventas">14.8. Ejemplo de conjunto de ventas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cuantos-departamentos-hay">14.8.1. ¿Cuántos departamentos hay?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cuantos-registros-hay-de-cada-uno">14.9. ¿Cuántos registros hay de cada uno?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dia-con-mas-ventas-de-cada-departamento">14.10. Día con más ventas de cada departamento</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Equipo de Hiperautomatización e Inteligencia artificial
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

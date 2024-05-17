@@ -1,0 +1,904 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>3. Tipos de variables en Python. &#8212; Curso de Centro de Excelencia en Inteligencia Artificial</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '1_Introduccion_Python/sesion_1/01_03-Tipos_Datos_Python';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="4. Evaluación sesión 1." href="01_09-Evaluacion_S1.html" />
+    <link rel="prev" title="2. Estructura de datos en Python." href="01_02-Estructuras_datos_Python.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo_hiperautomatizacion_1.png" class="logo__image only-light" alt="Curso de Centro de Excelencia en Inteligencia Artificial - Home"/>
+    <script>document.write(`<img src="../../_static/logo_hiperautomatizacion_1.png" class="logo__image only-dark" alt="Curso de Centro de Excelencia en Inteligencia Artificial - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Introducción a Python para Ciencia de Datos
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Sesión 1 - Configuración del entorno de desarrollo.</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_01-Instalacion_Notebooks_VSCode.html">1. Instalación de Python y del entorno de desarrollo.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_02-Estructuras_datos_Python.html">2. Estructura de datos en Python.</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Tipos de variables en Python.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_09-Evaluacion_S1.html">4. Evaluación sesión 1.</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sesión 2 - Introducción al lenguaje de Python.</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../sesion_2/02_01-Control_Flujo_Funciones.html">5. Control de flujo y funciones.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_2/02_03-Debugging_en_Python.html">6. Control de errores en Python.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_2/02_04-Manipulacion_OS.html">7. Manipulación del Sistema de Archivos con Python.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_2/02_05_Programacion_Orientada_Objetos.html">8. Programación orientada a objetos en Python.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_2/02_09-Comandos_Magicos.html">9. Comandos del sistema y comandos mágicos.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_2/02_10-Evaluacion_S2.html">10. Evaluación sesión 2.</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sesión 3- Introducción a Numpy.</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../sesion_3/03_01-Librerias_Requerimientos_Git.html">11. Librerías, archivo de requerimientos y Git.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_3/03_02-Intro_Numpy.html">12. Introducción a numpy.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_3/03_09-Evaluacion_S3.html">13. Evaluación sesión 3.</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sesión 4 - Introducción a Pandas y matplotlib.</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../sesion_4/04_01-Intro_Pandas.html">14. Introducción a Pandas.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_4/04_02-Intro_Matplotlib.html">15. Introducción a Matplotlib.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_4/04_09-Evaluacion_S4.html">16. Evaluación sesión 4.</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/1_Introduccion_Python/sesion_1/01_03-Tipos_Datos_Python.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Tipos de variables en Python.</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comentarios">3.1. Comentarios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enteros">3.2. Enteros</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flotantes">3.3. Flotantes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#listas">3.4. Listas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuplas">3.5. Tuplas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cadena-string">3.6. Cadena (string)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conjuntos">3.7. Conjuntos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diccionarios">3.8. Diccionarios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#booleanos">3.9. Booleanos</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="tipos-de-variables-en-python">
+<h1><span class="section-number">3. </span>Tipos de variables en Python.<a class="headerlink" href="#tipos-de-variables-en-python" title="Link to this heading">#</a></h1>
+<p><a class="reference download internal" download="" href="../../_downloads/4dacf0b68f54055c634fa68afc76c4bf/01_03-Tipos_Datos_Python.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Puedes</span> <span class="pre">descargar</span> <span class="pre">el</span> <span class="pre">cuaderno</span> <span class="pre">que</span> <span class="pre">se</span> <span class="pre">usó</span> <span class="pre">para</span> <span class="pre">generar</span> <span class="pre">esta</span> <span class="pre">página</span> <span class="pre">dando</span> <span class="pre">clic</span> <span class="pre">aquí.</span></code></a>.</p>
+<p><img alt="py_gif" src="../../_images/python_animado.gif" /></p>
+<p>En Python los siguientes tipos de variables son los más usados:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">int</span></code>: Los enteros usuales, en Python pueden ser tan grandes como se quiera a diferencia de otros lenguajes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">float</span></code>: Números decimales (con punto flotante).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">string</span></code>: Secuencias de caracteres para guardar texto. Se pueden definir con:</p>
+<ul>
+<li><p>comillas sencillas <code class="docutils literal notranslate"><span class="pre">'hola'</span></code>.</p></li>
+<li><p>comillas dobles <code class="docutils literal notranslate"><span class="pre">&quot;hola&quot;</span></code>.</p></li>
+<li><p>triples comillas <code class="docutils literal notranslate"><span class="pre">'''hola'''</span></code> (esta forma permite tener saltos de línea).</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">list</span></code>: Colección ordenada de elementos que es mutable (modificable) y heterogénea (puede tener diferentes tipos).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tuple</span></code>: Colección ordenada de elementos que es inmutable.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dict</span></code>: Colección no ordenada de pares llave valor. Eficiencia en la búsqueda de llaves.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">set</span></code>: Colección no ordenada de elementos únicos.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bool</span></code>: Booleanos representan valores de verdad; es decir <code class="docutils literal notranslate"><span class="pre">True</span></code> o <code class="docutils literal notranslate"><span class="pre">False</span></code>. Son usados para controlar el flujo del programa.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NoneType</span></code>: Para representar la ausencia de un valor o un valor nulo, se escribe como <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+</ul>
+<div class="admonition-recordatorio admonition">
+<p class="admonition-title">Recordatorio</p>
+<p>Para ejecutar una celda den click en el botón de “play” o tecleen <code class="docutils literal notranslate"><span class="pre">ctrl</span> <span class="pre">+</span> <span class="pre">enter</span></code> para permanecer en la celda o <code class="docutils literal notranslate"><span class="pre">shift</span> <span class="pre">+</span> <span class="pre">enter</span></code> para ir a la siguiente celda.</p>
+</div>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#comentarios" id="id1">Comentarios</a></p></li>
+<li><p><a class="reference internal" href="#enteros" id="id2">Enteros</a></p></li>
+<li><p><a class="reference internal" href="#flotantes" id="id3">Flotantes</a></p></li>
+<li><p><a class="reference internal" href="#listas" id="id4">Listas</a></p></li>
+<li><p><a class="reference internal" href="#tuplas" id="id5">Tuplas</a></p></li>
+<li><p><a class="reference internal" href="#cadena-string" id="id6">Cadena (string)</a></p></li>
+<li><p><a class="reference internal" href="#conjuntos" id="id7">Conjuntos</a></p></li>
+<li><p><a class="reference internal" href="#diccionarios" id="id8">Diccionarios</a></p></li>
+<li><p><a class="reference internal" href="#booleanos" id="id9">Booleanos</a></p></li>
+</ul>
+</nav>
+<section id="comentarios">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink"><span class="section-number">3.1. </span>Comentarios</a><a class="headerlink" href="#comentarios" title="Link to this heading">#</a></h2>
+<p>Primero mostraremos como poner comentarios en el código.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Esto es un comentario</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Todo lo que se ponga aquí</span>
+<span class="sd">será considerado como</span>
+<span class="sd">un comentario dentro</span>
+<span class="sd">de la celda</span>
+<span class="sd">&#39;&#39;&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;\nTodo lo que se ponga aquí\nserá considerado como\nun comentario dentro\nde la celda\n&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="enteros">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink"><span class="section-number">3.2. </span>Enteros</a><a class="headerlink" href="#enteros" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># int: enteros</span>
+<span class="n">int_ejemplo</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;La variable int_ejemplo contiene al número&#39;</span><span class="p">,</span><span class="n">int_ejemplo</span><span class="p">,</span><span class="s1">&#39; y es de tipo&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">int_ejemplo</span><span class="p">))</span>
+
+<span class="c1"># Se pueden separar por guión bajo para facilitar nuestra lectura sin cambiar su valor</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">1_000_000</span><span class="p">)</span> <span class="c1"># es lo mismo que print(1000000)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>La variable int_ejemplo contiene al número 2  y es de tipo &lt;class &#39;int&#39;&gt;
+1000000
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="flotantes">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink"><span class="section-number">3.3. </span>Flotantes</a><a class="headerlink" href="#flotantes" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># float: racionales</span>
+<span class="n">float_ej</span> <span class="o">=</span> <span class="mf">2.0</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;La variable float_ej contiene al número&#39;</span><span class="p">,</span><span class="n">float_ej</span><span class="p">,</span><span class="s1">&#39; y es de tipo&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">float_ej</span><span class="p">))</span>
+
+<span class="c1"># El resultado de multiplicar un entero por un float es un float aunque el float tenga el valor de un entero</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">float_ej</span><span class="o">*</span><span class="n">int_ejemplo</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>La variable float_ej contiene al número 2.0  y es de tipo &lt;class &#39;float&#39;&gt;
+4.0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="listas">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink"><span class="section-number">3.4. </span>Listas</a><a class="headerlink" href="#listas" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># lists: listas; pueden tener más de un tipo, además son mutables</span>
+<span class="n">lista_ej</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;La variable lista_ej almacena el valor&#39;</span><span class="p">,</span> <span class="n">lista_ej</span><span class="p">,</span> <span class="s1">&#39;y pertenece a la clase&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">lista_ej</span><span class="p">))</span>
+
+<span class="c1"># Para acceder a un elemento de la lista se le coloca en corchetes su posición o índice</span>
+<span class="c1"># Los índices en python comienzan en cero</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lista_ej</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">lista_ej</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+
+<span class="c1"># Se pueden hacer rebanadas o slices de las listas</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lista_ej</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span> <span class="c1"># Devuelve del elemento con índice 0 hasta el de índice 2  </span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lista_ej</span><span class="p">[:</span><span class="mi">5</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># Devuelve del elemento 0 al 5, pero en saltos de 2 en 2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lista_ej</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># Devuelve en un paso negativo (volteala)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lista_ej</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># Devuelve todos menos dos elementos del final</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lista_ej</span><span class="o">+</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># Agrega las listas en una sola</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lista_ej</span><span class="p">))</span> <span class="c1"># se puede obtener la longitud de la lista</span>
+
+<span class="c1"># Podemos agregar elementos al final de la lista con la función append</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Agregamos el elemento&#39;</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="s1">&#39; a la lista&#39;</span><span class="p">)</span>
+<span class="n">lista_ej</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">180</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lista_ej</span><span class="p">)</span>
+
+<span class="c1"># Podemos quitar elementos del final de la lista con la función pop</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Quitamos el último elemento&#39;</span><span class="p">,</span> <span class="n">lista_ej</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39; a la lista&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lista_ej</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span> <span class="c1"># Esta función devuelve el valor del último elemento</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lista_ej</span><span class="p">)</span>
+
+<span class="c1"># Se puede buscar un valor dentro de la lista</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lista_ej</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span> <span class="c1"># Esto nos dice que el elemento 2 está en el índice 1</span>
+<span class="c1"># Si no lo encuentra entonces regresará un error</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>La variable lista_ej almacena el valor [1, 2, 3, &#39;a&#39;, 2.3] y pertenece a la clase &lt;class &#39;list&#39;&gt;
+1 a
+[1, 2, 3]
+[1, 3, 2.3]
+[2.3, &#39;a&#39;, 3, 2, 1]
+[1, 2, 3]
+[1, 2, 3, &#39;a&#39;, 2.3, 0, 1, 1]
+5
+Agregamos el elemento 180  a la lista
+[1, 2, 3, &#39;a&#39;, 2.3, 180]
+Quitamos el último elemento 180  a la lista
+180
+[1, 2, 3, &#39;a&#39;, 2.3]
+1
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="tuplas">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink"><span class="section-number">3.5. </span>Tuplas</a><a class="headerlink" href="#tuplas" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># tuples: tuplas; pueden tener más de un tipo, pero son inmutables</span>
+<span class="n">tupla_ej</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;La variable tupla_ej almacena el valor&#39;</span><span class="p">,</span> <span class="n">tupla_ej</span><span class="p">,</span> <span class="s1">&#39;y pertenece a la clase&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">tupla_ej</span><span class="p">))</span>
+
+<span class="c1"># Si intentamos modificar algún elemento, como es inmutable, regresará un error</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">tupla_ej</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">2</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;No se puede modificar el valor de la tupla&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>La variable tupla_ej almacena el valor (1, 2, &#39;a&#39;) y pertenece a la clase &lt;class &#39;tuple&#39;&gt;
+No se puede modificar el valor de la tupla
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="cadena-string">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink"><span class="section-number">3.6. </span>Cadena (string)</a><a class="headerlink" href="#cadena-string" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># str: strings</span>
+<span class="n">string_ej</span> <span class="o">=</span> <span class="s2">&quot;Los strings almacenan lenguaje humano&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;La variable string_ej contiene a la cadena&#39;</span><span class="p">,</span><span class="n">string_ej</span><span class="p">,</span><span class="s1">&#39; y es de tipo&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">string_ej</span><span class="p">))</span>
+
+<span class="c1"># La operación de + concatena dos cadenas, es decir las une</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">string_ej</span> <span class="o">+</span> <span class="s1">&#39; or not&#39;</span><span class="p">)</span>
+
+
+<span class="c1"># Se pueden hacer slices al igual que a las listas</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">string_ej</span><span class="p">[:</span><span class="mi">7</span><span class="p">])</span> <span class="c1"># Se mira la cadena desde el índice 0 hasta el 6</span>
+
+<span class="c1"># Se pueden poner al revés</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">string_ej</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># Al especificar un número negativo hace que vaya hasta el elemento con posición 5ta del final</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">string_ej</span><span class="p">[:</span><span class="o">-</span><span class="mi">5</span><span class="p">])</span>
+
+<span class="c1"># Existen muchos métodos para la manipulación de cadenas, por ejemplo:</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">string_ej</span><span class="o">.</span><span class="n">capitalize</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">string_ej</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">string_ej</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">string_ej</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;Lo&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">string_ej</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">string_ej</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">string_ej</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;mano&#39;</span><span class="p">))</span>
+
+<span class="c1"># Si quieren hacer una operación de búsqueda compleja en cadenas vean el tema de las expresiones regulares</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>La variable string_ej contiene a la cadena Los strings almacenan lenguaje humano  y es de tipo &lt;class &#39;str&#39;&gt;
+Los strings almacenan lenguaje humano or not
+Los str
+onamuh ejaugnel nanecamla sgnirts soL
+Los strings almacenan lenguaje h
+Los strings almacenan lenguaje humano
+LOS STRINGS ALMACENAN LENGUAJE HUMANO
+los strings almacenan lenguaje humano
+True
+False
+False
+True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Para separar una cadena en una lista se usa el método split</span>
+
+<span class="n">string_ej</span> <span class="o">=</span> <span class="s2">&quot;Los strings almacenan lenguaje humano&quot;</span>
+<span class="n">string_ej_split</span> <span class="o">=</span> <span class="n">string_ej</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+<span class="n">string_ej_split</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Los&#39;, &#39;strings&#39;, &#39;almacenan&#39;, &#39;lenguaje&#39;, &#39;humano&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Para hacer saltos de línea se puede usar un carácter o la notación de tres comillas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># El carácter \n representa un salto de línea</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Salto</span><span class="se">\n</span><span class="s1">de</span><span class="se">\n</span><span class="s1">línea&#39;</span><span class="p">)</span>
+
+<span class="c1"># strings con salto de línea integrado</span>
+<span class="n">string_ej_nl</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;Los strings almacenan</span>
+<span class="s1">lenguaje humano&#39;&#39;&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">string_ej_nl</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Pertenecen a la misma clase: &#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">string_ej_nl</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Salto
+de
+línea
+Los strings almacenan
+lenguaje humano
+Pertenecen a la misma clase:  &lt;class &#39;str&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Las fstrings (formatted string) nos permiten escribir variables adentro de una string sin estar concatenando</span>
+
+<span class="n">fstr_ej</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;La lista </span><span class="si">{</span><span class="n">lista_ej</span><span class="si">}</span><span class="s1"> tenía </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">lista_ej</span><span class="p">)</span><span class="si">}</span><span class="s1"> de elementos&#39;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">fstr_ej</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>La lista [1, 2, 3, &#39;a&#39;, 2.3] tenía 5 de elementos
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="conjuntos">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink"><span class="section-number">3.7. </span>Conjuntos</a><a class="headerlink" href="#conjuntos" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># sets: conjuntos; se le tiene que pasar un iterable (lista)</span>
+<span class="n">set_ej</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;La variable set_ej almacena el valor&#39;</span><span class="p">,</span> <span class="n">set_ej</span><span class="p">,</span> <span class="s1">&#39;y pertenece a la clase&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">set_ej</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">set_ej</span><span class="p">)</span> <span class="c1"># Vemos como el conjunto no tiene dos 1&#39;s como tenía la lista con la que se creó</span>
+
+<span class="n">set_ej2</span><span class="o">=</span><span class="nb">set</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">set_ej</span> <span class="o">-</span><span class="n">set_ej2</span><span class="p">)</span> <span class="c1"># Se pueden hacer operaciones de conjuntos en este caso la diferencia</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">set_ej</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">set_ej2</span><span class="p">))</span> <span class="c1">#union</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">set_ej</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">set_ej2</span><span class="p">))</span> <span class="c1">#intersección</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>La variable set_ej almacena el valor {1, 2, 3} y pertenece a la clase &lt;class &#39;set&#39;&gt;
+{1, 2, 3}
+{1, 2}
+{1, 2, 3, 4, 5}
+{3}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="diccionarios">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink"><span class="section-number">3.8. </span>Diccionarios</a><a class="headerlink" href="#diccionarios" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># dict: diccionarios. También conocidos como hash maps, objetos</span>
+<span class="n">dict_ej</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="s1">&#39;b&#39;</span><span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;La variable dict_ej almacena el valor&#39;</span><span class="p">,</span> <span class="n">dict_ej</span><span class="p">,</span> <span class="s1">&#39;y pertenece a la clase&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">dict_ej</span><span class="p">))</span>
+
+<span class="c1"># Para encontrar el valor correspondiente a la llave se pone dicc[key]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dict_ej</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># Se puede reasignar una llave</span>
+<span class="n">dict_ej</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mi">3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dict_ej</span><span class="p">)</span>
+
+<span class="c1"># Puede tener cualquier objeto inmutable como llave y cualquier objeto en general como valor, incluso otro diccionario</span>
+<span class="c1"># Para asignar un valor a una nueva llave sólo se escribe el nombre de la llave</span>
+<span class="n">dict_ej</span><span class="p">[(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)]</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="nb">set</span><span class="p">([</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">])}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dict_ej</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>La variable dict_ej almacena el valor {1: &#39;a&#39;, &#39;a&#39;: 0, 0: &#39;b&#39;} y pertenece a la clase &lt;class &#39;dict&#39;&gt;
+a
+{1: 3, &#39;a&#39;: 0, 0: &#39;b&#39;}
+{1: 3, &#39;a&#39;: 0, 0: &#39;b&#39;, (1, 1): {&#39;a&#39;: {8, 9}}}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="booleanos">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink"><span class="section-number">3.9. </span>Booleanos</a><a class="headerlink" href="#booleanos" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Booleanos</span>
+<span class="n">bool_ej</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;La variable bool_ej almacena el valor&#39;</span><span class="p">,</span> <span class="n">bool_ej</span><span class="p">,</span> <span class="s1">&#39;y pertenece a la clase&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">bool_ej</span><span class="p">))</span>
+
+<span class="c1"># Las expresiones de comparación devuelven booleanos</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">1</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># Son iguales</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">1</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># mayor</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># menor o igual</span>
+
+<span class="c1"># Se pueden combinar para hacer proposiciones más complejas con or y and</span>
+<span class="n">bool_ej2</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">bool_ej</span> <span class="ow">and</span> <span class="n">bool_ej2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bool_ej</span> <span class="ow">or</span> <span class="n">bool_ej2</span><span class="p">)</span> 
+
+<span class="c1"># Es posible formular proposiciones aún más complicadas, esto da pie a ambigüedades en la priorización en las reglas de asociación </span>
+<span class="c1">#y caer en escenarios no contemplados, para solucionar esto se recomienda el uso de paréntesis para agrupar cada operación lógica</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Vemos problemas de asociatividad:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">bool_ej</span> <span class="ow">or</span> <span class="mi">1</span><span class="o">==</span><span class="mi">2</span> <span class="ow">and</span> <span class="n">bool_ej2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">bool_ej2</span> <span class="ow">or</span> <span class="p">(</span><span class="mi">1</span><span class="o">==</span><span class="mi">2</span> <span class="ow">and</span> <span class="n">bool_ej2</span><span class="p">))</span>
+<span class="c1"># La primera expresión dice False or True and True y es interpretada haciendo primero el or, mientras que la segunda lo agrupa distinto </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>La variable bool_ej almacena el valor False y pertenece a la clase &lt;class &#39;bool&#39;&gt;
+True
+False
+True
+False
+True
+Vemos problemas de asociatividad:
+False
+True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-buenas-practicas admonition">
+<p class="admonition-title">Buenas prácticas</p>
+<p>Nombrar a las variables de manera semántica para poder rastrear lo que hacen y poder seleccionar todas si es necesario.</p>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./1_Introduccion_Python\sesion_1"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="01_02-Estructuras_datos_Python.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Estructura de datos en Python.</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="01_09-Evaluacion_S1.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Evaluación sesión 1.</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comentarios">3.1. Comentarios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enteros">3.2. Enteros</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flotantes">3.3. Flotantes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#listas">3.4. Listas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuplas">3.5. Tuplas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cadena-string">3.6. Cadena (string)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conjuntos">3.7. Conjuntos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diccionarios">3.8. Diccionarios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#booleanos">3.9. Booleanos</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Equipo de Hiperautomatización e Inteligencia artificial
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
