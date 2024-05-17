@@ -1,0 +1,607 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Introducción a Python para Ciencia de Datos &#8212; Curso de Centro de Excelencia en Inteligencia Artificial</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'intro';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="1. Instalación de Python y del entorno de desarrollo." href="1_Introduccion_Python/sesion_1/01_01-Instalacion_Notebooks_VSCode.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="#">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo_hiperautomatizacion_1.png" class="logo__image only-light" alt="Curso de Centro de Excelencia en Inteligencia Artificial - Home"/>
+    <script>document.write(`<img src="_static/logo_hiperautomatizacion_1.png" class="logo__image only-dark" alt="Curso de Centro de Excelencia en Inteligencia Artificial - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1 current active">
+                <a class="reference internal" href="#">
+                    Introducción a Python para Ciencia de Datos
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Sesión 1 - Configuración del entorno de desarrollo.</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_1/01_01-Instalacion_Notebooks_VSCode.html">1. Instalación de Python y del entorno de desarrollo.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_1/01_02-Estructuras_datos_Python.html">2. Estructura de datos en Python.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_1/01_03-Tipos_Datos_Python.html">3. Tipos de variables en Python.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_1/01_09-Evaluacion_S1.html">4. Evaluación sesión 1.</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sesión 2 - Introducción al lenguaje de Python.</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_2/02_01-Control_Flujo_Funciones.html">5. Control de flujo y funciones.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_2/02_03-Debugging_en_Python.html">6. Control de errores en Python.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_2/02_04-Manipulacion_OS.html">7. Manipulación del Sistema de Archivos con Python.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_2/02_05_Programacion_Orientada_Objetos.html">8. Programación orientada a objetos en Python.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_2/02_09-Comandos_Magicos.html">9. Comandos del sistema y comandos mágicos.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_2/02_10-Evaluacion_S2.html">10. Evaluación sesión 2.</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sesión 3- Introducción a Numpy.</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_3/03_01-Librerias_Requerimientos_Git.html">11. Librerías, archivo de requerimientos y Git.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_3/03_02-Intro_Numpy.html">12. Introducción a numpy.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_3/03_09-Evaluacion_S3.html">13. Evaluación sesión 3.</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sesión 4 - Introducción a Pandas y matplotlib.</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_4/04_01-Intro_Pandas.html">14. Introducción a Pandas.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_4/04_02-Intro_Matplotlib.html">15. Introducción a Matplotlib.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_4/04_09-Evaluacion_S4.html">16. Evaluación sesión 4.</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/intro.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introducción a Python para Ciencia de Datos</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forma-de-evaluacion">Forma de evaluación</a><ul class="nav section-nav flex-column">
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="introduccion-a-python-para-ciencia-de-datos">
+<h1>Introducción a Python para Ciencia de Datos<a class="headerlink" href="#introduccion-a-python-para-ciencia-de-datos" title="Link to this heading">#</a></h1>
+<p>Bienvenidos a los cursos de capacitación de Ciencia de Datos diseñado por el equipo de Hiperautomatización e Inteligencia Artificial como parte del programa de Centros de Excelencia. Este curso es el primero en una serie de cursos desarrollados con la intención de dotar a los participantes de habilidades prácticas y teóricas fundamentales para la ciencia de datos, preparándolos para enfrentar desafíos reales en el ámbito profesional.</p>
+<p>Este es el primero de cuatro cursos:</p>
+<ol class="arabic simple">
+<li><p>Introducción a Python para Ciencia de Datos</p></li>
+<li><p>Fundamentos matemáticos para Ciencia de Datos</p></li>
+<li><p>Python para análisis de datos</p></li>
+<li><p>Introducción a Aprendizaje de Máquina</p></li>
+</ol>
+<p>Para acceder a los siguientes cursos es necesario aprobar los anteriores.</p>
+<section id="forma-de-evaluacion">
+<h2>Forma de evaluación<a class="headerlink" href="#forma-de-evaluacion" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Cada sesión tiene una evaluación al finalizar los cuadernos que se tendrá que subir a un forms.</p>
+<ul>
+<li><p>Dichas evaluaciones tendrán que ser subidas hasta antes del inicio de la siguiente sesión (por ejemplo, subir la sesión 1 antes de la sesión 2).</p></li>
+</ul>
+</li>
+<li><p>Las evaluaciones por sesión y las asistencias (no es obligatoria, pero hay que justificarlo a través del chat privado en Teams) serán consideradas para acceder a la evaluación.</p></li>
+<li><p>Habrá una evaluación final que representa el 100% de la evaluación. Se tendrá que obtener un mínimo de 80% para obtener el certificado.</p></li>
+<li><p>En caso de no aprobar se podrá solicitar una evaluación extraordinaria que comprenderá el contenido del material.</p></li>
+</ul>
+<p>Subir archivo de solución de evaluaciones tipo <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> con la siguiente convención de nombrado.</p>
+<p><code class="docutils literal notranslate"><span class="pre">{primer-nombre}_{primer-apellido}_{segundo-apellido}_evaluacion_S3.ipynb</span></code></p>
+<p>Por ejemplo:</p>
+<p><code class="docutils literal notranslate"><span class="pre">Fernando_Avitua_Varela_evaluacion_S3.ipynb</span></code></p>
+<p>A continuación, se muestra el temario que seguiremos en este curso.</p>
+<!--
+Este curso de cuatro sesiones, de dos horas cada una, está estructurado para introducir a los profesionales de áreas técnica al lenguaje `Python`, abarcando desde la configuración del entorno de desarrollo hasta conceptos introductorios de análisis de datos y visualización.
+
+Iniciaremos con la exploración de herramientas críticas como Colab, Jupyter y VSCode, seguido de una detallada revisión de la instalación de `Python` en diversas plataformas. Después revisaremos las buenas prácticas del entorno de programación como definir un ambiente virtual específicando los diferentes requerimientos.
+
+El curso profundiza en los fundamentos de `Python`, incluyendo tipos de datos, estructuras de control de flujo y manipulación de archivos, esenciales para el desarrollo en ciencia de datos.
+
+Progresaremos hacia la aplicación práctica de librerías clave en el análisis de datos: Numpy para operaciones numéricas y Pandas para la gestión de dataframes, culminando con técnicas de visualización de datos mediante Matplotlib. Este enfoque equilibra teoría y práctica, permitiendo a los participantes aplicar inmediatamente los conocimientos adquiridos. -->
+<!-- ### Python para análisis de datos
+
+Este curso tiene como requerimiento el curso de `Introducción a Python` o que el participante cuente con fundamentos de programación en Python previos. En este curso se verán las herramientas necesarias para hacer una análisis descriptivo básico de datos. En este análisis se descubrirá información de datos que podrán tener mucho valor para el negocio por si mismo.
+
+Se comenzará explorando más a detalle todas las funcionalidades de Pandas. Se verá como:
+- Seleccionar subconjuntos de registros y columnas para analizarlos a detalle.
+- Hacer manipulaciones útiles para tener las tablas en mejor formato.
+- Realizar agregaciones en términos de promedios y otras estadísticas.
+- Unir tablas para obtener información detallada de cada registro.
+- Definir tipos de variables en pandas.
+    - Aprender a manipular cantidades de fechas.
+    - Manipulación de datos categóricos y de texto.
+
+Después, ya con las herramientas necesarias para realizar la manipulación de los dataframes comenzaremos a analizar una base de datos **relevante para el negocio**
+
+### Fundamentos matemáticos para Ciencia de Datos
+
+Este programa está diseñado para ofrecer una comprensión profunda de los conceptos matemáticos y estadísticos esenciales que son piedras angulares en el campo de la ciencia de datos. A través de cuatro sesiones, abarcaremos desde los principios básicos de la probabilidad y la estadística hasta el álgebra lineal, la optimización, y más allá. Nuestro objetivo es brindarles las herramientas y el conocimiento necesarios para aplicar estos conceptos matemáticos en la resolución de problemas reales de ciencia de datos, mejorando así su capacidad analítica y su efectividad como científicos de datos.
+
+#### Sesión 1: Probabilidad y Estadística Básica
+En nuestra primera sesión, nos sumergiremos en el mundo de la probabilidad, explorando eventos aleatorios y su simulación usando herramientas como numpy y scipy.stats. Desarrollaremos una comprensión sólida de medidas estadísticas fundamentales como el promedio, la varianza, y la desviación estándar, e introduciremos los conceptos de distribuciones estadísticas clave, incluyendo la normal y la binomial. También aprenderemos a interpretar y crear histogramas, cuantiles, y boxplots, y discutiremos métodos para identificar outliers.
+
+#### Sesión 2: Álgebra Lineal y Optimización
+La segunda sesión se centrará en el álgebra lineal, una herramienta indispensable en el análisis de datos. Cubriremos la teoría y aplicación de matrices y vectores, productos y la solución de sistemas lineales. Además, introduciremos conceptos de optimización y exploraremos cómo encontrar rutas óptimas, un conocimiento crucial para la optimización de recursos en ciencia de datos.
+
+#### Sesión 3: Distancias y Agrupamientos
+Profundizaremos en el estudio de distancias y similitudes, fundamentales para el agrupamiento y la clasificación de datos. Aprenderemos sobre diferentes métricas de distancia y cómo estas se aplican para entender la similitud entre puntos de datos. También abordaremos las métricas de aglomeración y cómo pueden ser utilizadas para crear agrupamientos significativos dentro de los conjuntos de datos.
+
+#### Sesión 4: Pruebas Estadísticas y Clasificación de Problemas de Ciencia de Datos
+En nuestra sesión final, nos enfocaremos en pruebas estadísticas avanzadas, como la t-student y ANOVA, y cómo aplicarlas en pruebas A/B y en la correlación de variables. Exploraremos el tamaño de muestra efectivo y cómo determinarlo. Además, clasificaremos problemas de ciencia de datos en categorías como supervisados, no supervisados, y por refuerzo, y examinaremos métodos de regresión y clasificación, incluyendo regresión lineal simple y regresión logística, junto con métricas de evaluación como la precisión y el error cuadrático medio.
+
+Cada sesión de este curso está diseñada para construir sobre los fundamentos previos, asegurando una comprensión integral y aplicable de los conceptos matemáticos en ciencia de datos. A través de ejercicios prácticos, ejemplos del mundo real, y la aplicación de software estadístico, este curso promete no solo mejorar su comprensión teórica, sino también su habilidad para aplicar estos conceptos en soluciones analíticas efectivas.
+
+### Nivel técnico asociado
+
+Este curso está diseñado para proporcionar una comprensión sólida y práctica de cómo aplicar técnicas de Machine Learning (ML) utilizando la biblioteca scikit-learn en Python, una de las herramientas más versátiles y utilizadas en la industria para el análisis de datos y la creación de modelos predictivos. A lo largo de las sesiones, exploraremos desde los fundamentos del ML hasta técnicas avanzadas de predicción, clasificación, y reducción de dimensionalidad, aplicando estos conceptos a casos de uso reales.
+
+#### Sesión 1: Introducción al ML con scikit-learn
+Iniciaremos con una visión general de Machine Learning y cómo scikit-learn facilita la implementación de estos modelos. Introduciremos los estimadores de scikit-learn, que son la base para la mayoría de las tareas de ML, y discutiremos cómo inicializar, entrenar, y evaluar un modelo básico. Además, cubriremos las métricas de desempeño de regresión más comunes, como el error cuadrático medio y el error absoluto medio, fundamentales para evaluar la precisión de nuestros modelos.
+
+#### Sesión 2: Aprendizaje No Supervisado con scikit-learn
+En esta sesión, nos enfocaremos en el aprendizaje no supervisado, explorando técnicas de reducción dimensional y selección de características, incluyendo el Análisis de Componentes Principales (PCA) y la Selección de Características Secuenciales (SFS). Además, abordaremos el clustering, con énfasis en el algoritmo de K-medias, aplicándolo a un caso de uso práctico relacionado con la competencia de clientes en el sector bancario.
+
+#### Sesión 3: Predicciones y Pronósticos
+Profundizaremos en la regresión lineal, discutiendo conceptos clave como el sobreajuste y subajuste, y cómo manejarlos mediante técnicas de entrenamiento, prueba, y validación. También introduciremos la validación cruzada, una técnica esencial para la evaluación de modelos en ML. Exploraremos el pronóstico de series de tiempo, utilizando herramientas como Prophet para casos de uso de detección de anomalías.
+
+#### Sesión 4: Clasificación y Casos de Uso
+La última sesión se centrará en la clasificación, una de las aplicaciones más importantes del ML. Discutiremos métricas de evaluación de modelos de clasificación como la precisión, exactitud, sensibilidad, puntaje F1 y la curva ROC. Aprenderemos a implementar la regresión logística y aplicarla en un caso de uso práctico para la detección de incumplimiento crediticio.
+
+Este curso está diseñado no solo para proporcionar una base teórica sólida en ML, sino también para asegurar que los participantes puedan aplicar efectivamente estos conocimientos en situaciones reales, preparándolos para resolver desafíos complejos en el mundo de la ciencia de datos. Con una mezcla de teoría, práctica, y estudios de caso, los participantes estarán bien equipados para utilizar scikit-learn en sus proyectos de ML y avanzar en sus carreras como científicos de datos. -->
+<div class="toctree-wrapper compound">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sesión 1 - Configuración del entorno de desarrollo.</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_1/01_01-Instalacion_Notebooks_VSCode.html">1. Instalación de Python y del entorno de desarrollo.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_1/01_02-Estructuras_datos_Python.html">2. Estructura de datos en Python.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_1/01_03-Tipos_Datos_Python.html">3. Tipos de variables en Python.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_1/01_09-Evaluacion_S1.html">4. Evaluación sesión 1.</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sesión 2 - Introducción al lenguaje de Python.</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_2/02_01-Control_Flujo_Funciones.html">5. Control de flujo y funciones.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_2/02_03-Debugging_en_Python.html">6. Control de errores en Python.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_2/02_04-Manipulacion_OS.html">7. Manipulación del Sistema de Archivos con Python.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_2/02_05_Programacion_Orientada_Objetos.html">8. Programación orientada a objetos en Python.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_2/02_09-Comandos_Magicos.html">9. Comandos del sistema y comandos mágicos.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_2/02_10-Evaluacion_S2.html">10. Evaluación sesión 2.</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sesión 3- Introducción a Numpy.</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_3/03_01-Librerias_Requerimientos_Git.html">11. Librerías, archivo de requerimientos y Git.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_3/03_02-Intro_Numpy.html">12. Introducción a numpy.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_3/03_09-Evaluacion_S3.html">13. Evaluación sesión 3.</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sesión 4 - Introducción a Pandas y matplotlib.</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_4/04_01-Intro_Pandas.html">14. Introducción a Pandas.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_4/04_02-Intro_Matplotlib.html">15. Introducción a Matplotlib.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_Introduccion_Python/sesion_4/04_09-Evaluacion_S4.html">16. Evaluación sesión 4.</a></li>
+</ul>
+</div>
+<span class="target" id="id1"></span></section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="right-next"
+       href="1_Introduccion_Python/sesion_1/01_01-Instalacion_Notebooks_VSCode.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Instalación de Python y del entorno de desarrollo.</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#forma-de-evaluacion">Forma de evaluación</a><ul class="nav section-nav flex-column">
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Equipo de Hiperautomatización e Inteligencia artificial
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,784 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>11. Librerías, archivo de requerimientos y Git. &#8212; Curso de Centro de Excelencia en Inteligencia Artificial</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '1_Introduccion_Python/sesion_3/03_01-Librerias_Requerimientos_Git';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="12. Introducción a numpy." href="03_02-Intro_Numpy.html" />
+    <link rel="prev" title="10. Evaluación sesión 2." href="../sesion_2/02_10-Evaluacion_S2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo_hiperautomatizacion_1.png" class="logo__image only-light" alt="Curso de Centro de Excelencia en Inteligencia Artificial - Home"/>
+    <script>document.write(`<img src="../../_static/logo_hiperautomatizacion_1.png" class="logo__image only-dark" alt="Curso de Centro de Excelencia en Inteligencia Artificial - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Introducción a Python para Ciencia de Datos
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Sesión 1 - Configuración del entorno de desarrollo.</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../sesion_1/01_01-Instalacion_Notebooks_VSCode.html">1. Instalación de Python y del entorno de desarrollo.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_1/01_02-Estructuras_datos_Python.html">2. Estructura de datos en Python.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_1/01_03-Tipos_Datos_Python.html">3. Tipos de variables en Python.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_1/01_09-Evaluacion_S1.html">4. Evaluación sesión 1.</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sesión 2 - Introducción al lenguaje de Python.</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../sesion_2/02_01-Control_Flujo_Funciones.html">5. Control de flujo y funciones.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_2/02_03-Debugging_en_Python.html">6. Control de errores en Python.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_2/02_04-Manipulacion_OS.html">7. Manipulación del Sistema de Archivos con Python.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_2/02_05_Programacion_Orientada_Objetos.html">8. Programación orientada a objetos en Python.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_2/02_09-Comandos_Magicos.html">9. Comandos del sistema y comandos mágicos.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_2/02_10-Evaluacion_S2.html">10. Evaluación sesión 2.</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sesión 3- Introducción a Numpy.</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">11. Librerías, archivo de requerimientos y Git.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_02-Intro_Numpy.html">12. Introducción a numpy.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_09-Evaluacion_S3.html">13. Evaluación sesión 3.</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sesión 4 - Introducción a Pandas y matplotlib.</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../sesion_4/04_01-Intro_Pandas.html">14. Introducción a Pandas.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_4/04_02-Intro_Matplotlib.html">15. Introducción a Matplotlib.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_4/04_09-Evaluacion_S4.html">16. Evaluación sesión 4.</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/1_Introduccion_Python/sesion_3/03_01-Librerias_Requerimientos_Git.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Librerías, archivo de requerimientos y Git.</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#librerias-no-nativas">11.1. Librerías no nativas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-son-las-librerias">11.1.1. ¿Qué son las librerías?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-de-librerias-usando-pip">11.1.2. Instalación de librerías usando pip</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-de-librerias-usando-archivo-de-requerimientos">11.1.3. Instalación de librerías usando archivo de requerimientos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#como-se-importan-las-librerias">11.1.3.1. ¿Cómo se importan las librerías?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ambientes-virtuales">11.2. Ambientes virtuales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-es-un-ambiente-virtual">11.2.1. ¿Qué es un ambiente virtual?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#para-que-sirve-un-ambiente-virtual">11.2.2. ¿Para qué sirve un ambiente virtual?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-un-ambiente-virtual-usando-venv">11.2.3. Crear un ambiente virtual usando venv</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-un-ambiente-virtual-llamado-myenv">11.2.4. Crear un ambiente virtual llamado ‘myenv’</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#activar-un-ambiente-virtual">11.2.5. Activar un ambiente virtual</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#desactivar-un-ambiente-virtual">11.2.6. Desactivar un ambiente virtual</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#desactivar-el-ambiente-virtual">11.2.7. Desactivar el ambiente virtual</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instalar-paquetes-en-un-ambiente-virtual">11.2.8. Instalar paquetes en un ambiente virtual</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instalar-un-paquete-en-el-ambiente-virtual">11.2.9. Instalar un paquete en el ambiente virtual</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminar-un-ambiente-virtual">11.2.10. Eliminar un ambiente virtual</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#en-windows">11.2.11. En Windows</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#en-linux-o-macos">11.2.12. En Linux o macOS</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#git">11.3. Git</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-basico-de-git">11.3.1. Uso Básico de Git</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gitlab">11.4. GitLab</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="librerias-archivo-de-requerimientos-y-git">
+<h1><span class="section-number">11. </span>Librerías, archivo de requerimientos y Git.<a class="headerlink" href="#librerias-archivo-de-requerimientos-y-git" title="Link to this heading">#</a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#librerias-no-nativas" id="id1">Librerías no nativas</a></p>
+<ul>
+<li><p><a class="reference internal" href="#que-son-las-librerias" id="id2">¿Qué son las librerías?</a></p></li>
+<li><p><a class="reference internal" href="#instalacion-de-librerias-usando-pip" id="id3">Instalación de librerías usando pip</a></p></li>
+<li><p><a class="reference internal" href="#instalacion-de-librerias-usando-archivo-de-requerimientos" id="id4">Instalación de librerías usando archivo de requerimientos</a></p>
+<ul>
+<li><p><a class="reference internal" href="#como-se-importan-las-librerias" id="id5">¿Cómo se importan las librerías?</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#ambientes-virtuales" id="id6">Ambientes virtuales</a></p>
+<ul>
+<li><p><a class="reference internal" href="#que-es-un-ambiente-virtual" id="id7">¿Qué es un ambiente virtual?</a></p></li>
+<li><p><a class="reference internal" href="#para-que-sirve-un-ambiente-virtual" id="id8">¿Para qué sirve un ambiente virtual?</a></p></li>
+<li><p><a class="reference internal" href="#crear-un-ambiente-virtual-usando-venv" id="id9">Crear un ambiente virtual usando venv</a></p></li>
+<li><p><a class="reference internal" href="#crear-un-ambiente-virtual-llamado-myenv" id="id10">Crear un ambiente virtual llamado ‘myenv’</a></p></li>
+<li><p><a class="reference internal" href="#activar-un-ambiente-virtual" id="id11">Activar un ambiente virtual</a></p></li>
+<li><p><a class="reference internal" href="#desactivar-un-ambiente-virtual" id="id12">Desactivar un ambiente virtual</a></p></li>
+<li><p><a class="reference internal" href="#desactivar-el-ambiente-virtual" id="id13">Desactivar el ambiente virtual</a></p></li>
+<li><p><a class="reference internal" href="#instalar-paquetes-en-un-ambiente-virtual" id="id14">Instalar paquetes en un ambiente virtual</a></p></li>
+<li><p><a class="reference internal" href="#instalar-un-paquete-en-el-ambiente-virtual" id="id15">Instalar un paquete en el ambiente virtual</a></p></li>
+<li><p><a class="reference internal" href="#eliminar-un-ambiente-virtual" id="id16">Eliminar un ambiente virtual</a></p></li>
+<li><p><a class="reference internal" href="#en-windows" id="id17">En Windows</a></p></li>
+<li><p><a class="reference internal" href="#en-linux-o-macos" id="id18">En Linux o macOS</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#git" id="id19">Git</a></p>
+<ul>
+<li><p><a class="reference internal" href="#uso-basico-de-git" id="id20">Uso Básico de Git</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#gitlab" id="id21">GitLab</a></p></li>
+</ul>
+</nav>
+<section id="librerias-no-nativas">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink"><span class="section-number">11.1. </span>Librerías no nativas</a><a class="headerlink" href="#librerias-no-nativas" title="Link to this heading">#</a></h2>
+<section id="que-son-las-librerias">
+<h3><a class="toc-backref" href="#id2" role="doc-backlink"><span class="section-number">11.1.1. </span>¿Qué son las librerías?</a><a class="headerlink" href="#que-son-las-librerias" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Las librerías en Python son conjuntos de módulos y funciones que permiten la extensión de las capacidades del lenguaje.</p></li>
+<li><p>Facilitan la implementación de operaciones comunes en programación sin la necesidad de escribir código desde cero.</p></li>
+</ul>
+</section>
+<section id="instalacion-de-librerias-usando-pip">
+<h3><a class="toc-backref" href="#id3" role="doc-backlink"><span class="section-number">11.1.2. </span>Instalación de librerías usando pip</a><a class="headerlink" href="#instalacion-de-librerias-usando-pip" title="Link to this heading">#</a></h3>
+<p>Las librerías no vienen instaladas por defecto, sino que tenemos que instalarlas usando el gestor de paquetes de Python llamado <code class="docutils literal notranslate"><span class="pre">pip</span></code>. Para instalar numpy podemos hacer lo siguiente:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>requests
+</pre></div>
+</div>
+<p>Las librerías están en constante actualización de modo que nos gustaría que cuando construimos nuestro proyecto podamos instalar la versión de la librería en la que hicimos el desarrollo. Para instalar una versión específica de una librería usamos:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span><span class="nv">requests</span><span class="o">==</span><span class="m">2</span>.25.1
+</pre></div>
+</div>
+<p>Para actualizar la librería usamos el comando:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>requests
+</pre></div>
+</div>
+<p>Para desinstalar una librería usamos:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>uninstall<span class="w"> </span>requests
+</pre></div>
+</div>
+<p>Para revertir a una versión previa primero desinstalamos la librería y después instalamos la versión requerida.</p>
+</section>
+<section id="instalacion-de-librerias-usando-archivo-de-requerimientos">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink"><span class="section-number">11.1.3. </span>Instalación de librerías usando archivo de requerimientos</a><a class="headerlink" href="#instalacion-de-librerias-usando-archivo-de-requerimientos" title="Link to this heading">#</a></h3>
+<p>Una lista de requerimientos es un archivo de texto que contiene una lista de ítems a ser instalados usando pip. Este archivo simplifica el manejo de dependencias en proyectos de Python. Para crear una lista de requerimientos, simplemente lista las librerías y sus versiones en el archivo <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>requests==2.25.1
+numpy&gt;=1.19.5
+</pre></div>
+</div>
+<p>Para realizar esta instalación se usa el siguiente comando:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+<section id="como-se-importan-las-librerias">
+<h4><a class="toc-backref" href="#id5" role="doc-backlink"><span class="section-number">11.1.3.1. </span>¿Cómo se importan las librerías?</a><a class="headerlink" href="#como-se-importan-las-librerias" title="Link to this heading">#</a></h4>
+<p>Las librerías se pueden importar utilizando la palabra clave import. Por ejemplo, para importar la librería math, se utiliza:</p>
+<ul class="simple">
+<li><p>Código ya hecho para resolver realizar operaciones frecuentes y resolver problemas comunes.</p></li>
+<li><p>Una de las más usadas es <a class="reference external" href="https://numpy.org/doc/stable/index.html">numpy</a> que permite hacer operaciones vectoriales de manera más sencilla y eficiente.</p></li>
+</ul>
+<!-- Para insertar un hipervínculo en un notebook se pone la palabra entre corchetes seguida del hypervínculo en paréntesis -->
+<a class="reference internal image-reference" href="../../_images/numpy_logo.png"><img alt="numpy_logo" class="align-center" src="../../_images/numpy_logo.png" style="width: 500px;" /></a>
+<ul class="simple">
+<li><p>Para acceder al código de <code class="docutils literal notranslate"><span class="pre">numpy</span></code> hay que usar una de las siguientes formas:</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import numpy # importa todas las funciones</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>  <span class="c1"># La forma más usual con un alias</span>
+<span class="c1"># from numpy import random as rd # importando sólo un módulo en especial con un alias, usado para librerías muy grandes</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Por ejemplo, con el <strong>módulo</strong> <code class="docutils literal notranslate"><span class="pre">random</span></code> se pueden generar una variable aleatoria uniforme entre el 0 y el 1 con la siguiente instrucción:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># accedemos a código de estas librerías llamándolas por su alias. Los módulos están separados por puntos</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.4307855776480116
+</pre></div>
+</div>
+</div>
+</div>
+<a class="reference internal image-reference" href="../../_images/numpy.png"><img alt="numpy_modulos" class="align-center" src="../../_images/numpy.png" style="width: 500px;" /></a>
+<p>Las <strong>librerías</strong> pueden tener muchos <strong>módulos</strong> y los <strong>módulos</strong> a su vez pueden tener muchas <strong>funciones</strong>.</p>
+<p>Las funciones de cada librería se pueden llamar con parámetros por defecto (default) o asignar valores a ciertos parámetros, como veremos con la función</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Para esta función, el valor por defecto de <code class="docutils literal notranslate"><span class="pre">size</span></code> es 1, de modo que si no especificamos otra cosa, generará sólo un experimento.</p>
+</section>
+</section>
+</section>
+<section id="ambientes-virtuales">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink"><span class="section-number">11.2. </span>Ambientes virtuales</a><a class="headerlink" href="#ambientes-virtuales" title="Link to this heading">#</a></h2>
+<p>La creación y gestión de ambientes virtuales en Python es una práctica esencial para el desarrollo de software, ya que permite a los desarrolladores trabajar en proyectos con dependencias específicas sin afectar otros proyectos o el sistema Python global.</p>
+<section id="que-es-un-ambiente-virtual">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink"><span class="section-number">11.2.1. </span>¿Qué es un ambiente virtual?</a><a class="headerlink" href="#que-es-un-ambiente-virtual" title="Link to this heading">#</a></h3>
+<p>Un ambiente virtual es un entorno Python aislado que permite instalar paquetes y gestionar dependencias de manera independiente para cada proyecto. Esto significa que puedes tener diferentes versiones de una misma librería en diferentes ambientes virtuales sin que uno interfiera con el otro.</p>
+</section>
+<section id="para-que-sirve-un-ambiente-virtual">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink"><span class="section-number">11.2.2. </span>¿Para qué sirve un ambiente virtual?</a><a class="headerlink" href="#para-que-sirve-un-ambiente-virtual" title="Link to this heading">#</a></h3>
+<p>Los ambientes virtuales son útiles para:</p>
+<ul class="simple">
+<li><p>Aislar dependencias: Cada proyecto puede tener sus propias dependencias, sin importar las versiones instaladas globalmente.</p></li>
+<li><p>Experimentación segura: Permite probar nuevas librerías o actualizar versiones de paquetes sin afectar otros desarrollos.</p></li>
+<li><p>Consistencia entre entornos: Facilita la replicación de entornos de desarrollo, pruebas y producción, reduciendo los problemas de “funciona en mi máquina”.</p></li>
+</ul>
+</section>
+<section id="crear-un-ambiente-virtual-usando-venv">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink"><span class="section-number">11.2.3. </span>Crear un ambiente virtual usando venv</a><a class="headerlink" href="#crear-un-ambiente-virtual-usando-venv" title="Link to this heading">#</a></h3>
+<p>venv es el módulo de Python incorporado para crear ambientes virtuales. Para crear un nuevo ambiente virtual, utiliza el siguiente comando, reemplazando myenv con el nombre que desees para tu ambiente virtual.</p>
+</section>
+<section id="crear-un-ambiente-virtual-llamado-myenv">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink"><span class="section-number">11.2.4. </span>Crear un ambiente virtual llamado ‘myenv’</a><a class="headerlink" href="#crear-un-ambiente-virtual-llamado-myenv" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>myenv
+</pre></div>
+</div>
+</section>
+<section id="activar-un-ambiente-virtual">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink"><span class="section-number">11.2.5. </span>Activar un ambiente virtual</a><a class="headerlink" href="#activar-un-ambiente-virtual" title="Link to this heading">#</a></h3>
+<p>Una vez creado, debes activar el ambiente virtual para utilizarlo. El comando para activar un ambiente virtual varía según el sistema operativo.</p>
+<ul class="simple">
+<li><p>En Windows:</p></li>
+</ul>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">myenv</span><span class="p">\</span><span class="n">Scripts</span><span class="p">\</span><span class="n">activate</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>En Linux o macOS:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>myenv/bin/activate
+</pre></div>
+</div>
+</section>
+<section id="desactivar-un-ambiente-virtual">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink"><span class="section-number">11.2.6. </span>Desactivar un ambiente virtual</a><a class="headerlink" href="#desactivar-un-ambiente-virtual" title="Link to this heading">#</a></h3>
+<p>Para salir del ambiente virtual y volver al entorno global de Python, utiliza el comando deactivate.</p>
+</section>
+<section id="desactivar-el-ambiente-virtual">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink"><span class="section-number">11.2.7. </span>Desactivar el ambiente virtual</a><a class="headerlink" href="#desactivar-el-ambiente-virtual" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>deactivate
+</pre></div>
+</div>
+</section>
+<section id="instalar-paquetes-en-un-ambiente-virtual">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink"><span class="section-number">11.2.8. </span>Instalar paquetes en un ambiente virtual</a><a class="headerlink" href="#instalar-paquetes-en-un-ambiente-virtual" title="Link to this heading">#</a></h3>
+<p>Una vez activado el ambiente virtual, puedes instalar paquetes usando pip. Los paquetes se instalarán en el ambiente virtual sin afectar el entorno global de Python.</p>
+</section>
+<section id="instalar-un-paquete-en-el-ambiente-virtual">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink"><span class="section-number">11.2.9. </span>Instalar un paquete en el ambiente virtual</a><a class="headerlink" href="#instalar-un-paquete-en-el-ambiente-virtual" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>requests
+</pre></div>
+</div>
+</section>
+<section id="eliminar-un-ambiente-virtual">
+<h3><a class="toc-backref" href="#id16" role="doc-backlink"><span class="section-number">11.2.10. </span>Eliminar un ambiente virtual</a><a class="headerlink" href="#eliminar-un-ambiente-virtual" title="Link to this heading">#</a></h3>
+<p>Para eliminar un ambiente virtual, simplemente elimina el directorio donde se creó el ambiente. No hay un comando específico de venv para eliminar un ambiente virtual.</p>
+</section>
+<section id="en-windows">
+<h3><a class="toc-backref" href="#id17" role="doc-backlink"><span class="section-number">11.2.11. </span>En Windows</a><a class="headerlink" href="#en-windows" title="Link to this heading">#</a></h3>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nb">rd </span><span class="p">/</span><span class="n">s</span> <span class="p">/</span><span class="n">q</span> <span class="n">myenv</span>
+</pre></div>
+</div>
+</section>
+<section id="en-linux-o-macos">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink"><span class="section-number">11.2.12. </span>En Linux o macOS</a><a class="headerlink" href="#en-linux-o-macos" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm<span class="w"> </span>-rf<span class="w"> </span>myenv
+</pre></div>
+</div>
+</section>
+</section>
+<section id="git">
+<h2><a class="toc-backref" href="#id19" role="doc-backlink"><span class="section-number">11.3. </span>Git</a><a class="headerlink" href="#git" title="Link to this heading">#</a></h2>
+<a class="reference internal image-reference" href="../../_images/Git-logo.svg.png"><img alt="git" class="align-center" src="../../_images/Git-logo.svg.png" style="width: 200px;" /></a>
+<p>Git es un sistema de control de versiones distribuido que facilita la gestión de cambios en el código fuente durante el desarrollo de software. Permite a múltiples usuarios trabajar juntos en el mismo proyecto de manera eficiente.</p>
+<section id="uso-basico-de-git">
+<h3><a class="toc-backref" href="#id20" role="doc-backlink"><span class="section-number">11.3.1. </span>Uso Básico de Git</a><a class="headerlink" href="#uso-basico-de-git" title="Link to this heading">#</a></h3>
+<p>Para iniciar un nuevo repositorio en Git, se utiliza:</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>init
+</pre></div>
+</div>
+<p>Para clonar un repositorio existente:</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>&lt;url-del-repositorio&gt;
+</pre></div>
+</div>
+<p>Para agregar cambios al área de staging:</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>&lt;archivo&gt;
+</pre></div>
+</div>
+<p>Para confirmar los cambios en el repositorio:</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Mensaje descriptivo del cambio&quot;</span>
+</pre></div>
+</div>
+<p>Para subir los cambios al repositorio remoto:</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>&lt;nombre-de-la-rama&gt;
+</pre></div>
+</div>
+</section>
+</section>
+<section id="gitlab">
+<h2><a class="toc-backref" href="#id21" role="doc-backlink"><span class="section-number">11.4. </span>GitLab</a><a class="headerlink" href="#gitlab" title="Link to this heading">#</a></h2>
+<p>GitLab es una plataforma de gestión de repositorios Git que proporciona una serie de herramientas para la colaboración en proyectos de software, incluyendo seguimiento de problemas, revisión de código, y CI/CD (integración continua y entrega continua).</p>
+<a class="reference internal image-reference" href="../../_images/gitlab_logo.png"><img alt="fishy" class="align-center" src="../../_images/gitlab_logo.png" style="width: 200px;" /></a>
+<div class="admonition-nota admonition">
+<p class="admonition-title">Nota</p>
+<p><strong>Git</strong> se usa para el desarrollo local de un usuario. Después, herramientas como <strong>Gitlab</strong> se usa para gestionar desarrollos locales y unirlos en un repositorio colaborativo donde se pueden subir cambios, regresar a versiones anteriores entre varios usuarios.</p>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./1_Introduccion_Python\sesion_3"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../sesion_2/02_10-Evaluacion_S2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">10. </span>Evaluación sesión 2.</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="03_02-Intro_Numpy.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">12. </span>Introducción a numpy.</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#librerias-no-nativas">11.1. Librerías no nativas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-son-las-librerias">11.1.1. ¿Qué son las librerías?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-de-librerias-usando-pip">11.1.2. Instalación de librerías usando pip</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-de-librerias-usando-archivo-de-requerimientos">11.1.3. Instalación de librerías usando archivo de requerimientos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#como-se-importan-las-librerias">11.1.3.1. ¿Cómo se importan las librerías?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ambientes-virtuales">11.2. Ambientes virtuales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-es-un-ambiente-virtual">11.2.1. ¿Qué es un ambiente virtual?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#para-que-sirve-un-ambiente-virtual">11.2.2. ¿Para qué sirve un ambiente virtual?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-un-ambiente-virtual-usando-venv">11.2.3. Crear un ambiente virtual usando venv</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-un-ambiente-virtual-llamado-myenv">11.2.4. Crear un ambiente virtual llamado ‘myenv’</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#activar-un-ambiente-virtual">11.2.5. Activar un ambiente virtual</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#desactivar-un-ambiente-virtual">11.2.6. Desactivar un ambiente virtual</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#desactivar-el-ambiente-virtual">11.2.7. Desactivar el ambiente virtual</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instalar-paquetes-en-un-ambiente-virtual">11.2.8. Instalar paquetes en un ambiente virtual</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instalar-un-paquete-en-el-ambiente-virtual">11.2.9. Instalar un paquete en el ambiente virtual</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminar-un-ambiente-virtual">11.2.10. Eliminar un ambiente virtual</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#en-windows">11.2.11. En Windows</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#en-linux-o-macos">11.2.12. En Linux o macOS</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#git">11.3. Git</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-basico-de-git">11.3.1. Uso Básico de Git</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gitlab">11.4. GitLab</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Equipo de Hiperautomatización e Inteligencia artificial
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

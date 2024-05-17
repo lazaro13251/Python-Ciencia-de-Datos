@@ -1,0 +1,689 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>8. Programación orientada a objetos en Python. &#8212; Curso de Centro de Excelencia en Inteligencia Artificial</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '1_Introduccion_Python/sesion_2/02_05_Programacion_Orientada_Objetos';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="9. Comandos del sistema y comandos mágicos." href="02_09-Comandos_Magicos.html" />
+    <link rel="prev" title="7. Manipulación del Sistema de Archivos con Python." href="02_04-Manipulacion_OS.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo_hiperautomatizacion_1.png" class="logo__image only-light" alt="Curso de Centro de Excelencia en Inteligencia Artificial - Home"/>
+    <script>document.write(`<img src="../../_static/logo_hiperautomatizacion_1.png" class="logo__image only-dark" alt="Curso de Centro de Excelencia en Inteligencia Artificial - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Introducción a Python para Ciencia de Datos
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Sesión 1 - Configuración del entorno de desarrollo.</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../sesion_1/01_01-Instalacion_Notebooks_VSCode.html">1. Instalación de Python y del entorno de desarrollo.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_1/01_02-Estructuras_datos_Python.html">2. Estructura de datos en Python.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_1/01_03-Tipos_Datos_Python.html">3. Tipos de variables en Python.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_1/01_09-Evaluacion_S1.html">4. Evaluación sesión 1.</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sesión 2 - Introducción al lenguaje de Python.</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="02_01-Control_Flujo_Funciones.html">5. Control de flujo y funciones.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_03-Debugging_en_Python.html">6. Control de errores en Python.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_04-Manipulacion_OS.html">7. Manipulación del Sistema de Archivos con Python.</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">8. Programación orientada a objetos en Python.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_09-Comandos_Magicos.html">9. Comandos del sistema y comandos mágicos.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_10-Evaluacion_S2.html">10. Evaluación sesión 2.</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sesión 3- Introducción a Numpy.</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../sesion_3/03_01-Librerias_Requerimientos_Git.html">11. Librerías, archivo de requerimientos y Git.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_3/03_02-Intro_Numpy.html">12. Introducción a numpy.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_3/03_09-Evaluacion_S3.html">13. Evaluación sesión 3.</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sesión 4 - Introducción a Pandas y matplotlib.</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../sesion_4/04_01-Intro_Pandas.html">14. Introducción a Pandas.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_4/04_02-Intro_Matplotlib.html">15. Introducción a Matplotlib.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sesion_4/04_09-Evaluacion_S4.html">16. Evaluación sesión 4.</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/1_Introduccion_Python/sesion_2/02_05_Programacion_Orientada_Objetos.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Programación orientada a objetos en Python.</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conceptos-importantes-en-poo">8.1. Conceptos importantes en POO</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#herencia">8.1.1. Herencia</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polimorfismo">8.1.2. Polimorfismo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encapsulamiento">8.1.3. Encapsulamiento</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="programacion-orientada-a-objetos-en-python">
+<h1><span class="section-number">8. </span>Programación orientada a objetos en Python.<a class="headerlink" href="#programacion-orientada-a-objetos-en-python" title="Link to this heading">#</a></h1>
+<p>La Programación Orientada a Objetos (POO) en Python es un paradigma que estructura el software en entidades denominadas “objetos”, compuestos por atributos (datos) y métodos (funciones). Este enfoque facilita la modularidad, reutilización de código, y <strong>representa de manera intuitiva entidades del mundo real</strong>.</p>
+<p>Python implementa la POO permitiendo definir clases, que son plantillas para objetos, apoyándose en conceptos clave como <em>herencia</em>, <em>polimorfismo</em>, <em>encapsulación</em> y <em>abstracción</em>. Estos principios promueven un diseño de software robusto, escalable y mantenible, esencial para el desarrollo de aplicaciones complejas.</p>
+<p>Para comenzar a entender la POO es útil hacer la siguiente diferenciación</p>
+<ul class="simple">
+<li><p>Las <strong>Clases</strong> son planos donde se definen las características y comportamientos de los objetos.</p></li>
+<li><p>Los <strong>Objetos</strong> en python son instancias de clases.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Employee</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">name</span><span class="p">,</span><span class="n">project</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span> <span class="c1"># Atributo</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">project</span> <span class="o">=</span> <span class="n">project</span>
+    
+    <span class="k">def</span> <span class="nf">work</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c1"># Método</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> &#39;está trabajando en&#39; </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="si">}</span><span class="s2">.&quot;</span>
+
+ <span class="c1"># Creando una instancia de la clase Employee</span>
+
+<span class="n">worker</span> <span class="o">=</span> <span class="n">Employee</span><span class="p">(</span><span class="s2">&quot;Edgar&quot;</span><span class="p">,</span> <span class="s2">&quot;AIops&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">worker</span><span class="o">.</span><span class="n">work</span><span class="p">())</span> <span class="c1"># Salida: Edgar está trabajando en AIops</span>
+</pre></div>
+</div>
+<p>La clase Employee tiene varias definiciones que vale la pena explicar</p>
+<ul class="simple">
+<li><p><strong>Atributos</strong>: Son variables que se definen dentro de una clase, los atributos pueden ser públicos y privados.</p></li>
+<li><p><strong>Métodos</strong>: Son funciones que se definen dentro de la clase.</p></li>
+<li><p>Objeto <em><strong>self</strong></em> es una convención que se utiliza como nombre para el primer parámetro de un método en una clase.</p></li>
+<li><p><strong>Métodos dunder</strong>  (abreviatura de «double underscore methods», también conocidos como «métodos mágicos» o «métodos especiales»)
+son métodos especiales que tienen un doble guion bajo (__) al principio y al final de su nombre. <code class="docutils literal notranslate"><span class="pre">__init__</span></code>, <code class="docutils literal notranslate"><span class="pre">__str__</span></code> y <code class="docutils literal notranslate"><span class="pre">__repr__</span></code> .</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;I&#39;m </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">, and I&#39;m </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">age</span><span class="si">}</span><span class="s2"> years old.&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">(name=&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;, age=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">age</span><span class="si">}</span><span class="s2">)&quot;</span>
+
+<span class="n">jane</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s2">&quot;Jane Doe&quot;</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">jane</span><span class="p">)</span>
+
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">(name=&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;, age=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">age</span><span class="si">}</span><span class="s2">)&quot;</span>
+
+<span class="n">john</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s2">&quot;John Doe&quot;</span><span class="p">,</span> <span class="mi">35</span><span class="p">)</span>
+<span class="n">john</span>
+<span class="nb">repr</span><span class="p">(</span><span class="n">john</span><span class="p">)</span>
+
+</pre></div>
+</div>
+<section id="conceptos-importantes-en-poo">
+<h2><span class="section-number">8.1. </span>Conceptos importantes en POO<a class="headerlink" href="#conceptos-importantes-en-poo" title="Link to this heading">#</a></h2>
+<section id="herencia">
+<h3><span class="section-number">8.1.1. </span>Herencia<a class="headerlink" href="#herencia" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Python admite la herencia de clases mediante la creación de una clase hija que hereda los atributos y métodos de la clase padre. Para heredar una clase, simplemente se especifica el nombre de la clase padre dentro de los paréntesis después del nombre de la clase hija.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="k">class</span> <span class="nc">Employee</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">name</span><span class="p">,</span><span class="n">project</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">brand</span> <span class="o">=</span> <span class="n">name</span> <span class="c1"># Atributo</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">project</span>
+    
+    <span class="k">def</span> <span class="nf">work</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c1"># Método</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> &#39;está trabajando en &#39; </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="si">}</span><span class="s2">.&quot;</span>
+
+
+<span class="n">worker</span> <span class="o">=</span> <span class="n">Employee</span><span class="p">(</span><span class="s2">&quot;Edgar&quot;</span><span class="p">,</span> <span class="s2">&quot;AIops&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">worker</span><span class="o">.</span><span class="n">work</span><span class="p">())</span> 
+
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="k">class</span> <span class="nc">Salary</span><span class="p">(</span><span class="n">Employee</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">project</span><span class="p">,</span><span class="n">salary</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="n">project</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">salary</span> <span class="o">=</span> <span class="n">salary</span>
+    
+    <span class="k">def</span> <span class="nf">esalary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> &#39;está trabajando en &#39; </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="si">}</span><span class="s2"> con un salario de </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">salary</span><span class="si">}</span><span class="s2">.&quot;</span>
+        
+<span class="n">worker_h</span> <span class="o">=</span> <span class="n">Salary</span><span class="p">(</span><span class="s2">&quot;Edgar&quot;</span><span class="p">,</span> <span class="s2">&quot;AIops&quot;</span><span class="p">,</span> <span class="s1">&#39;$100&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;llamado desde la clase de Salary&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">worker_h</span><span class="o">.</span><span class="n">work</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">worker_h</span><span class="o">.</span><span class="n">esalary</span><span class="p">())</span>
+
+
+</pre></div>
+</div>
+</section>
+<section id="polimorfismo">
+<h3><span class="section-number">8.1.2. </span>Polimorfismo<a class="headerlink" href="#polimorfismo" title="Link to this heading">#</a></h3>
+<p>El polimorfismo permite que un objeto se comporte de manera diferente en distintos contextos.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="k">class</span> <span class="nc">Automovil</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">marca</span><span class="p">,</span> <span class="n">modelo</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">velocidad_maxima</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__marca</span> <span class="o">=</span> <span class="n">marca</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__modelo</span> <span class="o">=</span> <span class="n">modelo</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__color</span> <span class="o">=</span> <span class="n">color</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__velocidad_maxima</span> <span class="o">=</span> <span class="n">velocidad_maxima</span>
+        
+    <span class="k">def</span> <span class="nf">acelerar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gas</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Suministrando gas al motor:&quot;</span><span class="p">,</span> <span class="n">gas</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">frenar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Frenando el automóvil&quot;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">AutomovilElectrico</span><span class="p">(</span><span class="n">Automovil</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">marca</span><span class="p">,</span> <span class="n">modelo</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">velocidad_maxima</span><span class="p">,</span> <span class="n">capacidad_bateria</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">marca</span><span class="p">,</span> <span class="n">modelo</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">velocidad_maxima</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__capacidad_bateria</span> <span class="o">=</span> <span class="n">capacidad_bateria</span>
+
+    <span class="k">def</span> <span class="nf">acelerar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nivel_carga</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">nivel_carga</span> <span class="o">&gt;=</span> <span class="mi">50</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;El automóvil eléctrico acelera rápidamente&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;El automóvil eléctrico acelera lentamente&quot;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">AutomovilDeportivo</span><span class="p">(</span><span class="n">Automovil</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">marca</span><span class="p">,</span> <span class="n">modelo</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">velocidad_maxima</span><span class="p">,</span> <span class="n">aleron</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">marca</span><span class="p">,</span> <span class="n">modelo</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">velocidad_maxima</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__aleron</span> <span class="o">=</span> <span class="n">aleron</span>
+
+    <span class="k">def</span> <span class="nf">acelerar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pedal_a_fondo</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="n">pedal_a_fondo</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;El automóvil deportivo acelera rápidamente&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;El automóvil deportivo acelera lentamente&quot;</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</section>
+<section id="encapsulamiento">
+<h3><span class="section-number">8.1.3. </span>Encapsulamiento<a class="headerlink" href="#encapsulamiento" title="Link to this heading">#</a></h3>
+<p>El encapsulamiento restringe mediante el uso de métodos y atributos privados. Los métodos y atributos privados se definen mediante el uso del doble guion bajo (__). Solo puede accederse a los métodos privados por otros métodos dentro de la misma clase; no se puede acceder directamente a los atributos privados desde fuera de la clase.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Automovil</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">marca</span><span class="p">,</span> <span class="n">modelo</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">velocidad_maxima</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__marca</span> <span class="o">=</span> <span class="n">marca</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__modelo</span> <span class="o">=</span> <span class="n">modelo</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__color</span> <span class="o">=</span> <span class="n">color</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__velocidad_maxima</span> <span class="o">=</span> <span class="n">velocidad_maxima</span>
+        
+    <span class="k">def</span> <span class="nf">obtener_modelo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Marca del automóvil:&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__modelo</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">__frenar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Frenando el automóvil&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">acelerar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">aceleracion</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">aceleracion</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__frenar</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Acelerando&#39;</span><span class="p">,</span> <span class="n">aceleracion</span><span class="p">)</span>
+
+<span class="n">my_car</span> <span class="o">=</span> <span class="n">Automovil</span><span class="p">(</span><span class="s2">&quot;Toyota&quot;</span><span class="p">,</span><span class="s2">&quot;Camry&quot;</span><span class="p">,</span><span class="s2">&quot;Gris&quot;</span><span class="p">,</span><span class="s2">&quot;220km/h&quot;</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">my_car</span><span class="o">.</span><span class="n">modelo</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Atributo modelo encapsulado&quot;</span><span class="p">)</span>
+    <span class="n">my_car</span><span class="o">.</span><span class="n">obtener_modelo</span><span class="p">()</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">my_car</span><span class="o">.</span><span class="n">frenar</span><span class="p">())</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Método frenar encapsulado&quot;</span><span class="p">)</span>
+    <span class="n">my_car</span><span class="o">.</span><span class="n">acelerar</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./1_Introduccion_Python\sesion_2"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="02_04-Manipulacion_OS.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>Manipulación del Sistema de Archivos con Python.</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="02_09-Comandos_Magicos.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">9. </span>Comandos del sistema y comandos mágicos.</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conceptos-importantes-en-poo">8.1. Conceptos importantes en POO</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#herencia">8.1.1. Herencia</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polimorfismo">8.1.2. Polimorfismo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encapsulamiento">8.1.3. Encapsulamiento</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Equipo de Hiperautomatización e Inteligencia artificial
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
